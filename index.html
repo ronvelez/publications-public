@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Short and Sweet Wedding Ceremonies by iCertify Services</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f7f7f7;
+            background-image: url("./weddingonbeach.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+        }
+
+        /* Reduced overlay to show more background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.25);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Styles - Glassmorphism */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.40);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #34495e;
+            margin-bottom: 20px;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            font-size: 1em;
+            color: #2c3e50;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
+
+        /* Highlight Cards (Pricing) */
+        .highlight-card {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .pricing-amount {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 15px 0;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Accordion Container */
+        .accordion-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+            margin-bottom: 30px;
+        }
+
+        /* Accordion Item */
+        .accordion-item {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .accordion-item:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Accordion Header */
+        .accordion-header {
+            width: 100%;
+            padding: 20px 25px;
+            background: transparent;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .accordion-header:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .accordion-header:focus {
+            outline: 2px solid #3498db;
+            outline-offset: -2px;
+        }
+
+        /* Accordion Icon */
+        .accordion-icon {
+            font-size: 1.5em;
+            font-weight: 300;
+            transition: transform 0.3s ease;
+            color: #3498db;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(45deg);
+        }
+
+        /* Accordion Content */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 25px;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 2000px;
+            padding: 0 25px 25px 25px;
+        }
+
+        .accordion-content p,
+        .accordion-content ul {
+            margin-top: 15px;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        h3 {
+            font-size: 1.4em;
+            color: #34495e;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 30px;
+            margin: 15px 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+
+        ul ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 25px;
+        }
+
+        a {
+            color: #2980b9;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        a:hover {
+            color: #1f5f8b;
+            text-decoration: underline;
+        }
+
+        p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .accordion-container {
+                grid-template-columns: 1fr;
+            }
+
+            .accordion-header {
+                font-size: 1.1em;
+                padding: 18px 20px;
+            }
+
+            .accordion-content {
+                padding: 0 20px;
+            }
+
+            .accordion-item.active .accordion-content {
+                padding: 0 20px 20px 20px;
+            }
+
+            body {
+                background-attachment: scroll;
+            }
+
+            .pricing-amount {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Short and Sweet Wedding Ceremonies</h1>
+            <p class="subtitle">by iCertify Services LLC</p>
+            <p>Ron Velez, Notary and Officiant</p>
+            <div class="contact-info">
+                <p>Fort Lauderdale and Broward County</p>
+                <p>Email: <a href="mailto:shortsweetweddings@outlook.com">shortsweetweddings@outlook.com</a></p>
+                <p>Phone: <a href="tel:7543009922">(754) 300-9922</a></p>
+            </div>
+        </header>
+
+        <!-- Accordion Sections -->
+        <div class="accordion-container">
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <span>About the Wedding Officiant</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Mr. Ron Velez is the CEO of iCertify Services and a Florida notary and wedding officiant. He has been an ordained Reverend with the Universal Life Church since 1996. Mr. Velez has conducted short and sweet wedding ceremonies for many years and enjoys working with couples to create their special day.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <span>How to get married in the State of Florida</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <ul>
+                        <li>You must apply for a marriage license at any county clerk office in Florida or online.</li>
+                        <li>Your marriage license application should be completed at least 3 days before the ceremony.</li>
+                        <li>An approved marriage license is valid for 60 days from the county’s approval date.</li>
+                        <li>Please monitor your license dates. The officiant will not sign the marriage license if it is outside the required Florida timelines (you will not be legally married and ceremony fees are non-refundable).</li>
+                        <li>Click <a href="https://www.browardclerk.org/Divisions/Marriage" target="_blank" rel="noopener noreferrer">here</a> for the application process and requirements in Broward County.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <span>Officiant Services</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <ul>
+                        <li>Officiant for your wedding ceremony (primarily in Broward County; travel to nearby counties available upon request).</li>
+                        <li>Sign the marriage license and file it with the issuing county.</li>
+                        <li><strong>Assistance with Planning</strong><br>
+                            We can assist with planning the wedding ceremony.<br>
+                            We are not wedding planners but can help you find one if needed.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <span>The Ceremony</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <ul>
+                        <li>Pick a location for your ceremony. We can officiate ceremonies throughout most of Broward County (and nearby counties if requested).</li>
+                        <li>The ceremony is generally 15 minutes (you must bring the marriage license and meet all requirements).</li>
+                        <li><strong>Standard ceremony elements</strong> (we will review these during our initial call):
+                            <ul>
+                                <li>Processional (optional)</li>
+                                <li>Opening reading (Welcome)</li>
+                                <li>Consent (“I do”)</li>
+                                <li>Exchange of Vows and Rings<br>
+                                    Vows can be standard (officiant prompts and you repeat) or self‑written and spoken to each other.<br>
+                                    Rings are optional.</li>
+                                <li>Closing reading or a small cultural element (optional)</li>
+                                <li>Pronouncement of the newly married couple and first kiss</li>
+                                <li>Recessional (optional)</li>
+                            </ul>
+                        </li>
+                        <li>More extensive customizations can be accommodated for an additional fee.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <span>Closing Process</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <ul>
+                        <li>Marriage license is signed by participants (witness signatures are optional but recommended).</li>
+                        <li>Officiant signs the marriage license.</li>
+                        <li>iCertify Services mails the signed license back to the issuing county.</li>
+                        <li>The county mails a certified copy of the license to the address indicated on your application.</li>
+                        <li>Final payment is due at the time of signing.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <span>Beach & Park Weddings</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Yes, you can get married on the beach in Broward County, FL.</p>
+                    
+                    <h3>Do I need a permit?</h3>
+                    <p>Restrictions vary depending on which beaches you choose for your beach ceremony.</p>
+                    <p>The City of Fort Lauderdale does not require a permit to have a wedding ceremony on their public beaches.</p>
+                    <p>Please follow the links below to get more information on other municipalities that do require a beach permit.</p>
+                    <ul>
+                        <li><a href="https://www.daniabeachfl.gov/" target="_blank" rel="noopener noreferrer">Dania Beach</a></li>
+                        <li><a href="https://www.deerfield-beach.com/" target="_blank" rel="noopener noreferrer">Deerfield Beach</a></li>
+                        <li><a href="https://www.fortlauderdale.gov/" target="_blank" rel="noopener noreferrer">Fort Lauderdale</a> (no permit required)</li>
+                        <li><a href="https://www.hollywoodfl.org/" target="_blank" rel="noopener noreferrer">Hollywood</a></li>
+                        <li><a href="https://www.lbts-fl.gov/" target="_blank" rel="noopener noreferrer">Lauderdale-By-The-Sea</a></li>
+                        <li><a href="https://www.pompanobeachfl.gov/" target="_blank" rel="noopener noreferrer">Pompano Beach</a></li>
+                    </ul>
+                    
+                    <p>In Fort Lauderdale and Broward County, there are various paid and free options for outdoor venues.</p>
+                    <ul>
+                        <li><a href="https://www.eventective.com/fort-lauderdale-fl/wedding-venues/" target="_blank" rel="noopener noreferrer">Fort Lauderdale Outdoor Wedding Venues</a></li>
+                        <li><a href="https://www.eventective.com/broward-county-fl/wedding-venues/" target="_blank" rel="noopener noreferrer">Broward County Outdoor Wedding Venues</a></li>
+                        <li><a href="https://www.floridastateparks.org/parks-and-trails/hugh-taylor-birch-state-park" target="_blank" rel="noopener noreferrer">Hugh Taylor Birch State Park at Fort Lauderdale Beach</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <span>Wedding Resources in South Florida</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="https://www.eventective.com/" target="_blank" rel="noopener noreferrer">Eventective</a> (Search Event Venues & Vendors around Fort Lauderdale, FL)</li>
+                        <li><a href="https://www.visitlauderdale.com/" target="_blank" rel="noopener noreferrer">Visit Lauderdale</a></li>
+                        <li>If you would like to be included on our list of resources, please email your name and link for consideration to: <a href="mailto:shortsweetweddings@outlook.com">shortsweetweddings@outlook.com</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <span>Affiliations</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="https://www.visitlauderdale.com/" target="_blank" rel="noopener noreferrer">Visit Lauderdale</a> (Official visitors site for the City of Fort Lauderdale)</li>
+                        <li><a href="https://www.eventective.com/" target="_blank" rel="noopener noreferrer">Eventective</a></li>
+                        <li><a href="https://www.theofficiantdirectory.com/" target="_blank" rel="noopener noreferrer">The Officiant Directory</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing - Keep this prominent and always visible -->
+        <section class="pricing highlight-card">
+            <h2>💰 How much does it cost?</h2>
+            <p class="pricing-amount">$300 - $500</p>
+            <p>Wedding officiant services depending on location, customizations, etc.</p>
+        </section>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function () {
+                    const accordionItem = this.parentElement;
+                    const isActive = accordionItem.classList.contains('active');
+
+                    document.querySelectorAll('.accordion-item').forEach(item => {
+                        item.classList.remove('active');
+                        item.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
+                    });
+
+                    if (!isActive) {
+                        accordionItem.classList.add('active');
+                        this.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
+
+            const imagePath = "./weddingonbeach.png";
+            const img = new Image();
+            img.onload = function () {
+                document.body.style.backgroundImage = "url('" + imagePath + "')";
+            };
+            img.onerror = function () {
+                document.body.style.backgroundImage =
+                    "linear-gradient(180deg, #f8fbff 0%, #eaf4ff 100%)";
+            };
+            img.src = imagePath;
+        });
+    </script>
+</body>
+</html>
