@@ -1,1 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>National Social Security and Medicare Hospital Insurance Data Simulator</title>
+  <meta name="description" content="A free educational tool. It shows how a new full retirement age, a federal transfer, and tariffs on earned income above $10,000,000 could change Social Security and Medicare hospital insurance solvency, and the payroll tax rates on the income tiers.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <p class="eyebrow">A national picture · based on the 2026 official projections</p>
+    <h1>National Social Security and Medicare Hospital Insurance Data Simulator</h1>
+    <p class="lede">This is a free educational tool. Its purpose is to show how the solvency of Social Security and Medicare hospital insurance could change for the whole country. A trust fund is the savings account for that program. Solvent means the account can keep paying full promised benefits. <strong class="teaching-note">This is a teaching tool, not a projection from the Social Security Administration or Medicare.</strong></p>
+    <p class="lede">You choose the full retirement age and the other eligibility ages. You can add a possible yearly transfer from other federal funds. You can also add tariffs on earned income above $10,000,000. On this page, a tariff is an extra charge on that pay. It is not a tax on imported goods. Those choices together set the payroll tax rates on the income tiers. A tier is a band of earnings. The Solvency Simulation Summary Report and the charts then show how long each savings account would last.</p>
+    <p class="lede">The simulator uses only earned income, as the IRS defines it: wages, salaries, tips, and net self-employment earnings. Interest, dividends, capital gains, pensions, and other unearned income are left out. See <a href="https://www.irs.gov/credits-deductions/individuals/earned-income-tax-credit/earned-income">earned income at IRS.gov</a>.</p>
+    <p class="lede">Under today’s law, the worker and the employer together pay 12.4% of wages for Social Security, up to $184,500 in 2026. Wages above that pay no Social Security tax. They together pay 2.9% of all wages for Medicare hospital insurance. Only the worker pays an extra 0.9% on wages above $200,000 (single) or $250,000 (joint). Those dollar limits do not rise with wages.</p>
+    <p class="lede lede-note">This is not a personal Social Security or Medicare estimate, and it does not calculate anyone’s own benefits. For a personal account, visit <a href="https://www.ssa.gov/myaccount/">my Social Security</a>.</p>
+  </header>
 
+  <main>
+    <section class="panel summary-report" aria-labelledby="health-heading">
+      <div class="section-head">
+        <div class="report-actions">
+          <button type="button" id="create-pdf">Create PDF of this Report</button>
+        </div>
+        <hr class="section-rule">
+        <h2 id="health-heading">Solvency Simulation Summary Report <span class="mode-flag" data-mode-flag>Current Law</span></h2>
+        <p class="hint" id="summary-lead">This report shows the settings for this run and how long each savings account lasts. It updates on its own when you change a setting below.</p>
+        <p class="hint" id="summary-review"><strong class="teaching-note">Review this report often after you change a setting.</strong> The settings list and the dates below update with each change.</p>
+        <hr class="section-rule">
+        <p class="hint" id="summary-example"><a href="example-solvencyreport-by-ron-velez.pdf">Example of Solvency Report (PDF)</a></p>
+        <hr class="section-rule">
+      </div>
+      <h3 id="summary-settings-heading">Settings used for this run <span class="mode-flag" data-mode-flag>Current Law</span></h3>
+      <dl id="summary-params" class="summary-params"></dl>
+      <div id="effects-block" hidden>
+        <h3 class="effects-title">What these settings do</h3>
+        <ul id="effects"></ul>
+      </div>
+      <h3 id="health-results-heading">System Health</h3>
+      <p id="narrative"></p>
+      <p id="recommendations" class="hint" hidden></p>
+      <p class="fine" id="package-note"></p>
+      <div class="cards">
+        <article class="card" id="card-oasi" data-status="critical">
+          <header>
+            <div>
+              <p class="fund-code">Retirement</p>
+              <h3>Retirement and survivors</h3>
+            </div>
+            <p class="status" id="status-oasi">Critical</p>
+          </header>
+          <p class="card-about">OASI is the official name for this savings account. It pays monthly cash to retired workers and to the spouses, children, and survivors of workers who have died. Payroll taxes on wages are its main source of money. It does not pay disability benefits. <a href="https://www.ssa.gov/benefits/retirement/">Retirement and survivors benefits at SSA.gov</a></p>
+          <p class="metric-label">Year the savings account runs out</p>
+          <p class="metric" id="deplete-oasi"></p>
+          <p class="law" id="deplete-oasi-law"></p>
+          <p class="metric-label">Share of promised benefits that incoming money can still pay</p>
+          <p class="metric-sub" id="payable-oasi"></p>
+          <p class="law" id="payable-oasi-law"></p>
+          <p class="metric-label">Savings compared with one year of cost</p>
+          <p class="metric-sub" id="ratio-oasi"></p>
+          <p class="law" id="ratio-oasi-law"></p>
+        </article>
+        <article class="card" id="card-oasdi" data-status="critical">
+          <header>
+            <div>
+              <p class="fund-code">Both funds</p>
+              <h3>Social Security, combined</h3>
+            </div>
+            <p class="status" id="status-oasdi">Critical</p>
+          </header>
+          <p class="card-about">OASDI is the official name for Social Security as a whole. This box adds retirement and survivors insurance to Disability Insurance. Disability Insurance pays workers who can no longer work because of a serious medical condition, and their families. The two savings accounts are separate in law. Official reports often show them together. <a href="https://www.ssa.gov/">Social Security at SSA.gov</a></p>
+          <p class="metric-label">Year the savings account runs out</p>
+          <p class="metric" id="deplete-oasdi"></p>
+          <p class="law" id="deplete-oasdi-law"></p>
+          <p class="metric-label">Share of promised benefits that incoming money can still pay</p>
+          <p class="metric-sub" id="payable-oasdi"></p>
+          <p class="law" id="payable-oasdi-law"></p>
+          <p class="metric-label">Savings compared with one year of cost</p>
+          <p class="metric-sub" id="ratio-oasdi"></p>
+          <p class="law" id="ratio-oasdi-law"></p>
+          <p class="note" id="di-note"></p>
+        </article>
+        <article class="card" id="card-hi" data-status="critical">
+          <header>
+            <div>
+              <p class="fund-code">Hospital</p>
+              <h3>Medicare hospital insurance</h3>
+            </div>
+            <p class="status" id="status-hi">Critical</p>
+          </header>
+          <p class="card-about">HI is the official name for this savings account. It is also called Medicare Part A. Part A helps pay for inpatient hospital care, skilled nursing stays, hospice, and some home health care. A payroll tax on wages is its main source of money. Part B helps pay doctor visits. Part D helps pay prescriptions. Those parts are not in this box. <a href="https://www.medicare.gov/what-medicare-covers/what-part-a-covers">What Part A covers at Medicare.gov</a></p>
+          <p class="metric-label">Year the savings account runs out</p>
+          <p class="metric" id="deplete-hi"></p>
+          <p class="law" id="deplete-hi-law"></p>
+          <p class="metric-label">Share of hospital costs that incoming money can still pay</p>
+          <p class="metric-sub" id="payable-hi"></p>
+          <p class="law" id="payable-hi-law"></p>
+          <p class="metric-label">Savings compared with one year of cost</p>
+          <p class="metric-sub" id="ratio-hi"></p>
+          <p class="law" id="ratio-hi-law"></p>
+        </article>
+      </div>
+      <p class="fine">Healthy means the savings account lasts through 2100 and still holds at least one year of cost. Under pressure means it lasts past 2036 but does not meet that test. Critical means it runs out by 2036. The combined Social Security card adds the retirement account and the disability account together. In real law they are separate. Disability money cannot pay retirement benefits unless Congress changes the law. At the end of 2025, 62.3 million people received retirement and survivor benefits, 8.2 million received disability benefits, and 69.3 million were in Medicare. Part B (doctor visits) and Part D (prescriptions) are not shown. Their premiums and other federal money are reset each year to cover the cost, so they do not run out.</p>
+    </section>
+
+    <form id="controls">
+    <section class="panel" aria-labelledby="solve-heading">
+      <div class="section-head row">
+        <div>
+          <h2 id="solve-heading">Select the ages and Simulate the payroll tax tiers <span class="mode-flag" data-mode-flag>Current Law</span></h2>
+          <p>Pick the ages and the year the change starts. Run the Simulator finds tax rates that keep each savings account paying full promised benefits through the year you choose. Most wages sit in Tier 1, through $1,000,000, so that Social Security rate stays near 13.45%. That limit is the Tier 1 soft cap. Tier 2, through $5,000,000, can rise up to 4 percentage points above Tier 1. Tiers 3 and 4 take any rate still needed above that. A box above Run the Simulator can remove the soft cap and use about the same rate on every tier. Solvent means the account can still pay those full benefits. Income tiers change the cards when you choose Simulation there, or when you click Run the Simulator.</p>
+        </div>
+        <button type="button" id="reset">Reset to Current Law</button>
+      </div>
+      <div hidden>
+        <input type="radio" name="mode" value="current" checked>
+        <input type="radio" name="mode" value="tiers">
+      </div>
+
+      <fieldset>
+        <legend>Eligibility ages</legend>
+        <div class="control">
+          <label for="fra">Social Security full retirement age</label>
+          <input id="fra-num" type="number" min="65" max="72" step="1" value="67">
+          <input id="fra" class="range" type="range" min="65" max="72" step="1" value="67">
+        </div>
+        <div class="control">
+          <label for="eea">Earliest age to claim Social Security</label>
+          <input id="eea-num" type="number" min="60" max="70" step="1" value="62">
+          <input id="eea" class="range" type="range" min="60" max="70" step="1" value="62">
+        </div>
+        <div class="control">
+          <label for="medicare-age">Medicare hospital insurance eligibility age</label>
+          <input id="medicare-age-num" type="number" min="60" max="75" step="1" value="65">
+          <input id="medicare-age" class="range" type="range" min="60" max="75" step="1" value="65">
+        </div>
+        <div class="control">
+          <label for="months">Phase-in, months of age per year</label>
+          <input id="months-num" type="number" min="1" max="12" step="1" value="2">
+          <input id="months" class="range" type="range" min="1" max="12" step="1" value="2">
+        </div>
+        <p class="hint" id="age-hint">How fast the ages rise. A setting of 2 means two months of age each year. Today’s ages are 67 for full retirement, 62 for the earliest claim, and 65 for Medicare. People already getting benefits stay on today’s rules. If the full retirement age rises by one year, a new retiree who still claims at the old age gets about 6.7% less each month. Raising the earliest claim age mostly changes when a reduced benefit can start. Raising the Medicare age takes the youngest hospital patients out of this savings account only. It does not show who would pay their hospital bills.</p>
+        <p class="hint" id="clamp-note" hidden></p>
+      </fieldset>
+
+      <div class="control">
+        <label for="solve-target">Remains solvent until this year</label>
+        <input id="solve-target" type="number" min="2026" max="2100" step="1" value="2075">
+      </div>
+      <div class="control">
+        <label for="solve-effective">Takes effect January 1</label>
+        <input id="solve-effective" type="number" min="2026" max="2070" step="1" value="2027">
+      </div>
+      <fieldset class="ruled">
+        <p class="hint" id="levy-hint"><strong class="teaching-note">These two tariffs are optional.</strong> They are not Current Law. On this page, tariff means an extra charge that does not raise anyone’s benefit. It is not a tax on imported goods. <strong class="teaching-note">They apply only to pay above $10 million, on the top tier.</strong> The starting amounts are 7% for Social Security and 3% for Medicare, 10% together. If you do not want the tariffs applied at all, set both amounts below to 0. Simulation counts them, including after you click Run the Simulator. Split evenly means the worker and the employer each pay half. Employer pays the whole moves the worker’s half onto the employer. The savings accounts receive the full tariff either way. The dashed line is Current Law and leaves them out.</p>
+        <div class="control">
+          <label for="solve-ss">National Social Security tariff above $10 million, percent</label>
+          <input id="solve-ss" type="number" min="0" max="30" step="0.1" value="7" aria-describedby="levy-hint">
+        </div>
+        <div class="control">
+          <label for="solve-hi">National Medicare tariff above $10 million, percent</label>
+          <input id="solve-hi" type="number" min="0" max="30" step="0.1" value="3" aria-describedby="levy-hint">
+        </div>
+        <div class="segmented" role="radiogroup" aria-label="Who pays the tariffs above $10 million">
+          <label><input type="radio" name="levy-payer" value="split" checked> Split evenly</label>
+          <label><input type="radio" name="levy-payer" value="employer"> Employer pays the whole</label>
+        </div>
+        <p class="hint" id="levy-split-hint"></p>
+      </fieldset>
+
+      <fieldset>
+        <div class="control">
+          <label for="federal-transfer">Annual transfer from other federal funds to the Trust funds, billions of dollars (optional)</label>
+          <input id="federal-transfer" type="number" min="0" step="any" value="0" inputmode="decimal" aria-describedby="transfer-hint">
+        </div>
+        <p class="hint" id="transfer-hint">If this box is above 0, that money is already in the large dates above. It is not Current Law. Current Law is today’s rules with this box at 0. The same amount goes to Social Security and to Medicare hospital insurance. Social Security’s share is split the same way as today’s 12.4% tax: about 85% to retirement and survivors, and about 15% to disability. It does not raise benefits and it does not change tax rates. The amount is in 2026 dollars and rises with prices, so its buying power stays the same. It is paid each year through 2100. The dashed line is Current Law and leaves this money out.</p>
+
+        <hr class="section-rule">
+
+        <p class="option-title" id="health-tax-heading">Payroll tax to employer-paid health insurance (optional)</p>
+        <label class="option-check" for="health-option">
+          <input id="health-option" type="checkbox" aria-describedby="health-option-hint">
+          <span>Add this 2% charge</span>
+        </label>
+        <div class="control">
+          <label for="health-hi">Medicare hospital insurance, billions of 2026 dollars a year</label>
+          <input id="health-hi" type="number" value="21" readonly tabindex="-1" aria-describedby="health-option-hint">
+        </div>
+        <p class="hint" id="health-option-hint"><strong class="teaching-note">This choice is not Current Law.</strong> It is a proposed option. Leave it unchecked for today’s rules. <strong>The tax is on the premium the employer pays to the health insurance company for a worker’s plan.</strong> That is the employer’s share of the company health plan. If a family plan costs $27,000 and the employer pays $20,000 of it, the 2% is charged on that $20,000, not on the $7,000 the worker already pays. The worker’s own premium payment is not taxed again. Cash wages, deductibles, copays, and doctor bills are not taxed by this charge. The health insurance company is not taxed. The 2% on the employer’s premium is then split evenly: the worker pays 1%, withheld from the paycheck, and the employer pays 1%. On that $20,000 example, the new charge is about $400 in total and the worker’s piece is about $200 a year. Check the box to deposit the estimate into the Medicare hospital-insurance trust fund each year. The estimate uses about $1.05 trillion of employer-paid premiums. Two percent of that is $21 billion a year. Hospital insurance receives all $21 billion. Social Security and disability receive none. The money does not raise benefits and it does not change the wage-tax rates. The amount is in 2026 dollars, rises with prices, and is paid each year through 2100. The dates above move as soon as you check it. The dashed line is Current Law and leaves this money out.</p>
+
+        <hr class="section-rule">
+
+        <p class="hint" id="proposed-hint"><strong class="teaching-note">These two choices are not Current Law.</strong> They are proposed options. Leave both unchecked for today’s rules. Check a box to deposit that estimate into each trust fund account each year. The dates above move as soon as you check it. The money does not raise benefits and it does not change the wage-tax rates. A strong year would bring more than the estimate. This page does not count that extra.</p>
+
+        <label class="option-check" for="income-option">
+          <input id="income-option" type="checkbox" aria-describedby="income-option-hint">
+          <span>Broader income tax</span>
+        </label>
+        <div class="control">
+          <label for="income-oasi">Retirement and survivors, billions of 2026 dollars a year</label>
+          <input id="income-oasi" type="number" value="39.6" readonly tabindex="-1" aria-describedby="income-option-hint">
+        </div>
+        <div class="control">
+          <label for="income-hi">Medicare hospital insurance, billions of 2026 dollars a year</label>
+          <input id="income-hi" type="number" value="21.1" readonly tabindex="-1" aria-describedby="income-option-hint">
+        </div>
+        <p class="hint" id="income-option-hint">This adds a 4% tax on investment profits and passive income: realized capital gains, dividends, and taxable interest. Wages are not in this tax. Pensions and IRA withdrawals are not in it. The 4% sits on top of today’s income tax. About 2.6 points of it go to Social Security and about 1.4 points go to hospital insurance. The estimate uses a weaker year, about $1.5 trillion of that income, after assuming people sell fewer assets. Four percent of that is about $61 billion a year. Retirement receives $39.6 billion. Hospital insurance receives $21.1 billion. Disability is not given a share. Combined Social Security still improves, because the retirement deposit is inside that total. The amount is in 2026 dollars, rises with prices, and is paid each year through 2100.</p>
+
+        <label class="option-check" for="trade-option">
+          <input id="trade-option" type="checkbox" aria-describedby="trade-option-hint">
+          <span>Stock-trade tariff</span>
+        </label>
+        <div class="control">
+          <label for="trade-oasi">Retirement and survivors, billions of 2026 dollars a year</label>
+          <input id="trade-oasi" type="number" value="243" readonly tabindex="-1" aria-describedby="trade-option-hint">
+        </div>
+        <div class="control">
+          <label for="trade-hi">Medicare hospital insurance, billions of 2026 dollars a year</label>
+          <input id="trade-hi" type="number" value="129.5" readonly tabindex="-1" aria-describedby="trade-option-hint">
+        </div>
+        <p class="hint" id="trade-option-hint">This adds a 0.38% tariff on the dollars in each US stock sale. On a $1,000 sale that is about $3.80. It is not a tax on wages, and it is charged on the sale, not only on the profit. The estimate uses a quiet trading year and then assumes a quarter of that trading does not happen. About $97 trillion of sales remain. The tariff on that base is about $372 billion a year. Retirement receives $243 billion. Hospital insurance receives $129.5 billion. Disability is not given a share. Combined Social Security still improves, because the retirement deposit is inside that total. The amount is in 2026 dollars, rises with prices, and is paid each year through 2100.</p>
+      </fieldset>
+
+      <hr class="section-rule">
+
+      <p class="option-title" id="cola-heading">Slower yearly benefit increase (optional)</p>
+      <label class="option-check" for="cola-option">
+        <input id="cola-option" type="checkbox" aria-describedby="cola-option-hint">
+        <span>Use the chained price index</span>
+      </label>
+      <p class="hint" id="cola-option-hint"><strong class="teaching-note">This choice is not Current Law.</strong> It is a proposed option. Leave it unchecked for today’s rules. <strong>The yearly Social Security raise would use the chained consumer price index instead of today’s price index.</strong> Today, a Social Security check goes up once a year with the consumer price index for wage earners. The chained index has risen about 0.3 percentage points less per year. On a $1,000 check, next year’s raise would be about $3 smaller. The gap compounds. After about 10 years the monthly check is roughly 3% smaller than under today’s raise, and after about 20 years it is roughly 6% smaller. The first check a person receives stays the same, because that starting benefit is based on wages, not on this yearly raise. People already getting benefits receive the smaller raise too. About one in twenty people on the rolls is new each year, so the full effect builds as older checks are replaced. The smaller raise starts with the December adjustment of the “Takes effect January 1” year. With that year at 2027, the first smaller checks are paid in 2028. Retirement, survivors, and disability all use this raise. Medicare hospital insurance does not. Hospital costs stay on today’s path. Combined Social Security’s date moves when you check it. The early-2030s change is small, because one year of a smaller raise does not shrink the checks much yet. By 2100 the smaller raises have compounded, so income covers a larger share of those reduced checks. The dashed line is Current Law and keeps today’s raise.</p>
+
+      <hr class="section-rule">
+      <label class="option-check" for="even-rates">
+        <input id="even-rates" type="checkbox" aria-describedby="even-rates-hint">
+        <span>Remove the Tier 1 soft cap</span>
+      </label>
+      <p class="hint" id="even-rates-hint"><strong class="teaching-note">This choice is not Current Law.</strong> The soft cap is an attempt to keep Tier 1 at or under 13.45% for Social Security and 3.65% for Medicare hospital insurance. Most wages are in Tier 1, so the cap holds down the rate on ordinary pay and pushes any extra rate onto the higher tiers. Leave the box unchecked to keep the soft cap. Check it to remove the cap. The simulator then uses about the same payroll rate on every tier. With the broader-income box and the stock-trade box left off, the federal transfer at 0, and a full retirement age of 65, that Social Security rate is about 15.5% and the hospital-insurance rate is about 3.8%. Retirement, combined Social Security, and hospital insurance then last through 2075, and no extra federal transfer is needed. The tariffs above $10 million stay on top of those rates. At today’s full retirement age of 67, with those same boxes off, Social Security is about 14.4% and hospital insurance stays about 3.8%. If either proposed deposit is checked, the even rate is lower. Checking or unchecking this box runs the simulator. Reset to Current Law clears it.</p>
+      <hr class="section-rule">
+      <div class="run-simulator">
+        <button type="button" id="find-taxes">Run the Simulator</button>
+      </div>
+      <p id="solve-next" class="hint" hidden>Scroll down to review the Income tiers and the charts. They have been updated automatically from the ages you chose for this simulation.</p>
+      <p id="solve-result" class="hint"></p>
+
+      <hr class="section-rule">
+      <fieldset>
+        <legend>Income tiers <span class="mode-flag" id="tiers-flag">Current Law</span></legend>
+        <p class="hint">The simulator sets these bands from the ages above. Changing the full retirement age, the earliest claim age, or the Medicare age runs the simulator. Run the Simulator does that too, even when those ages stay at 67, 62, and 65. Tier 1 runs through $1,000,000. Current Law still splits that band at the $184,500 wage base. A simulation uses one rate for the whole band and tries to keep Social Security at or under 13.45% and Medicare at or under 3.65%. Tier 2 runs through $5,000,000 and can rise up to 4 percentage points above Tier 1. Tier 3 runs through $10,000,000. Tier 4 is pay above $10,000,000 and carries a 7% Social Security tariff and a 3% Medicare tariff, 10% together. When more tax is needed after that 4-point step, Tiers 3 and 4 take it. On Tiers 2, 3, and 4, an optional choice lets the employer pay the entire Social Security and Medicare tax. The worker then pays nothing. The savings accounts still receive the full tax, and benefits and credits stay in place. You can still change any band by hand. Current Law keeps today’s tax schedule, so the bands stay off the cards. Simulation uses the bands and updates the cards. The dashed line on the charts stays Current Law.</p>
+        <div class="segmented" role="radiogroup" aria-label="Income tier choice">
+          <label><input type="radio" name="tier-schedule" value="current" checked> Current Law</label>
+          <label><input type="radio" name="tier-schedule" value="simulation"> Simulation</label>
+        </div>
+        <div id="tier-list"></div>
+        <p class="hint">“Earnings up to” is the top of that band, in 2026 dollars. On Tier 1, the two rates are what the worker and the employer together pay. The simulator tries to keep that band at or under 13.45% Social Security and 3.65% Medicare, and it can raise Tier 2 by as much as 4 percentage points above Tier 1. If you change a tier’s rate, the tiers under it move down when they can. The tiers above the one you changed stay put. On Tiers 2, 3, and 4, those rates are still the full tax. The choice just above Tier 2 can move that entire tax onto the employer. The worker then pays nothing, and benefits stay in place. The last band has no top. The bands move with average wages.</p>
+        <p class="hint">Tier 1 runs through $1,000,000, covering both sides of the $184,500 wage base. Tier 2 runs through $5,000,000. Tier 3 runs through $10,000,000. Tier 4 is everything above $10,000,000, and that is the only band with the tariffs. The starting tariffs are 7% for Social Security and 3% for Medicare, 10% together. Pay under $2 million follows the wage pattern already in this model. In 2023, pay at and above $2 million was 3.052% of Social Security wages, and pay at and above $10 million was 1.043%. The source is <a href="https://www.ssa.gov/cgi-bin/netcomp.cgi?year=2023">Social Security wage statistics for 2023</a>. Run the Simulator keeps Tier 1 at or under 13.45% Social Security and 3.65% Medicare, lets Tier 2 rise by as much as 4 percentage points above Tier 1, and raises Tiers 3 and 4 only for the rate still needed above that. No single rate goes above 40%. Social Security and Medicare rates together stop at 45%. The Medicare tariff above $10 million counts toward that 45%. The Social Security tariff above $10 million does not. Those tariffs do not raise that person’s benefit. The dashed line is Current Law and leaves them out.</p>
+      </fieldset>
+      <p class="back-top"><a href="#health-heading">Back to the Solvency Simulation Summary Report</a></p>
+    </section>
+    </form>
+
+    <section class="panel" aria-labelledby="charts-heading">
+      <div class="section-head">
+        <h2 id="charts-heading">Charts <span class="mode-flag" data-mode-flag>Current Law</span></h2>
+        <p>Your package is the solid line. Current Law is the dashed line. The cards above always show all three savings accounts. Point at a chart, or tap it, to read a year.</p>
+        <p id="chart-markers" class="hint"></p>
+      </div>
+      <div class="segmented" role="radiogroup" aria-label="Fund shown on the charts">
+        <label><input type="radio" name="program" value="oasdi" checked> Social Security, combined</label>
+        <label><input type="radio" name="program" value="oasi"> Retirement and survivors</label>
+        <label><input type="radio" name="program" value="hi"> Medicare hospital insurance</label>
+      </div>
+      <label class="check"><input id="shortfall" type="checkbox"> Show the unpaid gap if full promised benefits continued after the savings account runs out</label>
+
+      <figure>
+        <figcaption>
+          <h3>Savings compared with one year of cost</h3>
+          <p>Savings at the start of the year, compared with that year’s cost. After the account runs out, the line is zero. Over 100% means more than one year of cost is saved.</p>
+        </figcaption>
+        <div class="chart-host" id="chart-ratio"></div>
+      </figure>
+      <figure>
+        <figcaption>
+          <h3>Money in and promised cost</h3>
+          <p id="flow-note">Green is tax money. Red is the cost of promised benefits. Both are a percent of taxed wages. The dashed line is Current Law.</p>
+        </figcaption>
+        <div class="chart-host" id="chart-flow"></div>
+      </figure>
+      <figure>
+        <figcaption>
+          <h3>Savings</h3>
+          <p>Trillions of 2026 dollars, at the start of each year. The line hits zero in the year the savings account runs out.</p>
+        </figcaption>
+        <div class="chart-host" id="chart-reserves"></div>
+      </figure>
+
+      <div id="rates-block" hidden>
+        <figure>
+          <figcaption>
+            <h3>Payroll tax rates</h3>
+            <p>The dashed line is today’s tax rate under Current Law. The solid line is your package. Most wages are in the first band. The extra charge above $10 million shows on the solid line when Simulation is on, including after you click Run the Simulator.</p>
+          </figcaption>
+          <div class="chart-host" id="chart-rates"></div>
+        </figure>
+        <h3 id="tier-share-heading">About how much tax each band pays</h3>
+        <p id="tier-share-note" class="hint"></p>
+        <div class="share-wrap">
+          <table class="share-table" id="tier-share-table"></table>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel prose" aria-labelledby="about-heading">
+      <h2 id="about-heading">What this tool does and does not do <span class="mode-flag" data-mode-flag>Current Law</span></h2>
+      <h3>What it does</h3>
+      <ul>
+        <li>Shows the retirement account, the disability account, Social Security as a whole, and the Medicare hospital account from 2026 through 2100.</li>
+        <li>Compares your package with Current Law on the same charts. Current Law is the dashed line.</li>
+        <li>Shows how taxes, income bands, and eligibility ages move the year the account runs out, the savings compared with one year of cost, and the share of promised benefits that incoming money can still pay.</li>
+      </ul>
+      <h3>What it does not do</h3>
+      <ul>
+        <li>It is not an official score. A full official estimate uses detailed population, wage, and claiming patterns that this page simplifies.</li>
+        <li>It does not model Medicare Part B (doctor visits) or Part D (prescriptions), private premiums, Medicaid, employer coverage, or family hospital bills.</li>
+        <li>It does not change benefits for people already getting them. It also does not show poverty, retirement decisions, or the federal budget beyond these savings accounts.</li>
+      </ul>
+
+      <h3>Methodology</h3>
+      <p>The starting point is the middle official projection for 2026. Under Current Law, with no extra federal transfer, combined Social Security runs out in the third quarter of 2034. Income would then cover about 83% of promised benefits, falling toward 65% by 2100. Retirement and survivors run out in the fourth quarter of 2032 (about 78%, then 62% by 2100). Disability Insurance lasts through 2100. Medicare hospital insurance runs out in the second quarter of 2033 (about 89%, about 85% in 2050, and about 93% by 2100). If the transfer box is above 0, the cards show a later date than these.</p>
+      <p>The savings at the end of 2025 were $2,338 billion for retirement and survivors, $223 billion for disability, and $256 billion for hospital insurance. Tax money and cost follow smoothed paths through the published rates. Social Security tax money, not counting interest, is 12.91% of taxed wages in 2026 and 13.45% in 2100. The cost of promised benefits is 15.37% in 2026, 20.45% around 2085, and 20.02% in 2100. Hospital insurance tax money goes from 3.49% to 4.51% of its taxed wages, and cost from 3.49% through 4.54% in 2045 to 4.86% in 2100. An interest rate of 3.5% and wage growth of about 3.6% are chosen so this simpler picture runs out in those same quarters. The share of promised benefits that incoming money can still pay lands within about two points of the official figures.</p>
+      <p>The 2026 wage base, the cap on the Social Security tax, is $184,500. About 83% of Social Security wages are treated as falling under that cap. That share is an assumption. It fits with hospital-insurance wages averaging about 25% larger than Social Security wages, because hospital insurance has no cap. Income bands apply the rates you set to that pattern. Freezing the bands holds them in 2026 dollars while wages grow about 3.6% a year.</p>
+      <p>Program size comes from the 2026 official summary. At the end of 2025, 62.3 million people received retirement and survivor benefits, 8.2 million received disability benefits, and 69.3 million people were in Medicare. About 184.7 million people paid Social Security taxes and 188.7 million paid Medicare taxes. Savings compared with one year of cost were 153% for retirement and survivors, 132% for disability, and 53% for hospital insurance at the start of 2026. Hospital insurance enrollment in that report was 62.0 million older people and 7.1 million people with disabilities in 2025. The 2.5% cost change per year of eligibility age is a rough stand-in for one young age group, not an official Medicare estimate.</p>
+      <p>Each year the full retirement age rises, a new retiree’s promised benefit is about 6.7% lower if they claim at the old full retirement age. About one-twentieth of retired people are replaced by new awards each year, so the savings account feels the change slowly. The earliest claiming age has a small long-run effect, because a later claim comes with a higher monthly benefit, plus a near-term dip while those claims are delayed. The long-range hospital cost path is smoothed so Current Law still runs out in the second quarter of 2033. The official cost rate reaches 4.99% of taxed wages around 2085 before easing to 4.86% in 2100.</p>
+
+      <h3>Sources</h3>
+      <ul>
+        <li><a href="https://www.ssa.gov/oact/TR/2026/">2026 Social Security Trustees Report</a>. OASDI is the official name for Social Security as a whole: retirement, survivors, and disability.</li>
+        <li><a href="https://www.ssa.gov/oact/trsum/">A Summary of the 2026 Annual Reports</a> and the <a href="https://www.ssa.gov/oact/TRSUM/tr26summary.pdf">PDF summary</a></li>
+        <li><a href="https://www.ssa.gov/oact/cola/cbb.html">The wage base, also called the contribution and benefit base</a></li>
+        <li><a href="https://www.cms.gov/data-research/statistics-trends-and-reports/trustees-report-trust-funds">Official Medicare Trustees Reports</a>. HI is the official name for the hospital insurance account, also called Part A.</li>
+        <li><a href="https://data.cms.gov/tools/medicare-enrollment-dashboard">Medicare Enrollment Dashboard</a>. The enrollment counts on this page come from the official reports. The dashboard did not provide them as readable text.</li>
+        <li><a href="https://www.census.gov/programs-surveys/popproj.html">Census Bureau population projections</a>, which the official population path already uses</li>
+      </ul>
+    </section>
+    <div class="report-actions report-actions-end">
+      <button type="button" id="create-pdf-end">Create PDF of this Report</button>
+    </div>
+  </main>
+
+  <footer>
+    <hr class="section-rule">
+    <p>This web application and its source code are purely for educational use. They do not represent any official government or non-governmental entity. They are not affiliated with, endorsed by, or a product of the Social Security Administration, the Centers for Medicare &amp; Medicaid Services, or any other government agency or private organization. This is not an official projection. It is not legal, tax, financial, or benefits advice, and it does not calculate anyone’s own benefits. The numbers are a simplified picture drawn from the official 2026 reports, and they can differ from those reports. Do not use them to claim benefits, file taxes, or decide policy. The application and the source code are provided as is, with no warranty.</p>
+    <p>This is free, open-source software. You may use it and share it.</p>
+    <p><a href="solvencysimulator.zip">Click here for the Zip file if you wish to place the web files on your own local computer.</a></p>
+    <p>Created by Ron Velez, Founder, iCertify Services LLC. Any comments or suggestions can be sent to <a href="mailto:ronvelez@icertifyservices.com">ronvelez@icertifyservices.com</a>.</p>
+  </footer>
+  <p id="narrative-live" class="sr-only" aria-live="polite"></p>
+  <article id="pdf-report" class="pdf-report" hidden></article>
+  <script src="data/earnings.js"></script>
+  <script src="model.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
