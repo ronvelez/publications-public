@@ -285,6 +285,7 @@
       federalTransfer: readTransfer(),
       extraOasi: readProposed().oasi,
       extraHi: readProposed().hi,
+      extraDi: readProposed().di,
       chainedCola: !!(byId("cola-option") && byId("cola-option").checked),
       chainedColaYear: Number(byId("solve-effective").value) || 2027,
       ssLevy: simulating ? (Number(byId("solve-ss").value) || 0) : 0,
@@ -302,7 +303,8 @@
   function readProposed() {
     var oasi = 0;
     var hi = 0;
-    function add(boxId, oasiId, hiId) {
+    var di = 0;
+    function add(boxId, oasiId, hiId, diId) {
       var box = byId(boxId);
       if (!box || !box.checked) return;
       if (oasiId && byId(oasiId)) {
@@ -313,11 +315,15 @@
         var hiAmount = Number(byId(hiId).value);
         if (isFinite(hiAmount) && hiAmount > 0) hi += hiAmount;
       }
+      if (diId && byId(diId)) {
+        var diAmount = Number(byId(diId).value);
+        if (isFinite(diAmount) && diAmount > 0) di += diAmount;
+      }
     }
     add("income-option", "income-oasi", "income-hi");
-    add("trade-option", "trade-oasi", "trade-hi");
+    add("trade-option", "trade-oasi", "trade-hi", "trade-di");
     add("health-option", null, "health-hi");
-    return { oasi: oasi, hi: hi };
+    return { oasi: oasi, hi: hi, di: di };
   }
 
   function withPackage(scenario) {
@@ -442,6 +448,7 @@
       !(Number(scenario.federalTransfer) > 0) &&
       !(Number(scenario.extraOasi) > 0) &&
       !(Number(scenario.extraHi) > 0) &&
+      !(Number(scenario.extraDi) > 0) &&
       !scenario.chainedCola;
   }
 
@@ -501,7 +508,7 @@
       ? "On. This is not Current Law. A proposed 4% tax on realized capital gains, dividends, and taxable interest. Each year through 2100, retirement receives " + byId("income-oasi").value + " billion 2026 dollars and hospital insurance receives " + byId("income-hi").value + " billion. Disability is not given a share."
       : "Off. Not included in this run.");
     add("Stock-trade tariff", byId("trade-option") && byId("trade-option").checked
-      ? "On. This is not Current Law. A proposed 0.38% charge on the dollars in each US stock sale. Each year through 2100, retirement receives " + byId("trade-oasi").value + " billion 2026 dollars and hospital insurance receives " + byId("trade-hi").value + " billion. Disability is not given a share."
+      ? "On. This is not Current Law. The tariff is on the dollars traded, once on the buy and once on the sale, 0.298% each side. On a $1,000 trade the buyer pays $2.98 and the seller pays $2.98. Each year through 2100, retirement receives " + byId("trade-oasi").value + " billion 2026 dollars, disability receives " + byId("trade-di").value + " billion, and hospital insurance receives " + byId("trade-hi").value + " billion."
       : "Off. Not included in this run.");
     add("Slower yearly benefit increase", scenario.chainedCola
       ? "On. This is not Current Law. The yearly Social Security raise uses the chained price index, about 0.3 percentage points less than today’s raise. Retirement, survivors, and disability receive it. Medicare hospital insurance does not. The first check stays the same. The smaller raise starts the year after " + starts + "."
@@ -606,9 +613,10 @@
       items.push("The Tier 1 soft cap is off. It is not Current Law. The soft cap tries to keep Tier 1 at or under 13.45% for Social Security and 3.65% for Medicare hospital insurance. With the cap off, about the same payroll rate is used on every tier. Benefits do not rise.");
     }
     if (byId("trade-option") && byId("trade-option").checked) {
-      items.push("The stock-trade tariff is on. It is not Current Law. It is a proposed 0.38% charge on the dollars in each US stock sale. Each year through 2100, retirement receives " +
-        byId("trade-oasi").value + " billion 2026 dollars and hospital insurance receives " +
-        byId("trade-hi").value + " billion. Disability is not given a share. It does not raise benefits.");
+      items.push("The stock-trade tariff is on. It is not Current Law. The tariff is on the dollars traded, once on the buy and once on the sale. Each side pays 0.298%. On a $1,000 trade the buyer pays $2.98 and the seller pays $2.98. Each year through 2100, retirement receives " +
+        byId("trade-oasi").value + " billion 2026 dollars, disability receives " +
+        byId("trade-di").value + " billion, and hospital insurance receives " +
+        byId("trade-hi").value + " billion. It does not raise benefits. The solid green line includes this money. The red cost line does not move. Disability’s share is inside the combined Social Security chart.");
     }
     if (scenario.chainedCola) {
       items.push("The slower yearly benefit increase is on. It is not Current Law. Social Security checks rise with the chained price index, about 0.3 percentage points less than today’s raise. The first check stays the same, because it is based on wages. People already getting benefits receive the smaller raise too. Retirement, survivors, and disability are included. Medicare hospital insurance is not. The first smaller checks are paid the year after " +
@@ -1512,9 +1520,17 @@
         : depositHere
           ? " The green line includes the proposed deposits from 2026. The dashed line leaves that money out."
           : "";
+    var tradeNote = "";
+    if (tradeOn && fund === "hi") {
+      tradeNote = " The stock-trade tariff is in this green line: 0.298% on the buy and 0.298% on the sale, hospital insurance’s share. The red cost line does not change.";
+    } else if (tradeOn && fund === "oasdi") {
+      tradeNote = " The stock-trade tariff is in this green line: 0.298% on the buy and 0.298% on the sale. This combined line includes the retirement share and the disability share. The red cost line does not change.";
+    } else if (tradeOn) {
+      tradeNote = " The stock-trade tariff is in this green line: 0.298% on the buy and 0.298% on the sale, retirement’s share only. Disability’s share is in the combined Social Security chart. The red cost line does not change.";
+    }
     byId("flow-note").textContent = (fund === "hi"
       ? "Green is tax money. Red is the cost of promised hospital care. Both are a percent of taxed wages. Medicare’s wage total is larger because there is no wage cap. The dashed line is Current Law."
-      : "Green is tax money. Red is the cost of promised benefits. Both are a percent of taxed wages. The dashed line is Current Law.") + depositNote +
+      : "Green is tax money. Red is the cost of promised benefits. Both are a percent of taxed wages. The dashed line is Current Law.") + depositNote + tradeNote +
       (colaOn && fund === "hi"
         ? " The slower Social Security raise is on. It does not change hospital cost, so the red lines stay together."
         : colaOn
@@ -1822,6 +1838,7 @@
       federalTransfer: readTransfer(),
       extraOasi: readProposed().oasi,
       extraHi: readProposed().hi,
+      extraDi: readProposed().di,
       chainedCola: !!(byId("cola-option") && byId("cola-option").checked),
       evenRates: !!(byId("even-rates") && byId("even-rates").checked),
       softCapFirst: { oasdi: 13.45, hi: 3.65 },
@@ -2049,7 +2066,7 @@
       ["Annual transfer from other federal funds to the Trust funds, billions of dollars (optional)", byId("federal-transfer").value + " billion 2026 dollars each year through 2100"],
       ["Payroll tax to employer-paid health insurance, proposed option", byId("health-option").checked ? "On. Hospital insurance receives " + byId("health-hi").value + " billion of 2026 dollars each year. Social Security and disability receive none." : "Off"],
       ["Broader income tax, proposed option", byId("income-option").checked ? "On. Retirement " + byId("income-oasi").value + " billion and hospital insurance " + byId("income-hi").value + " billion of 2026 dollars each year" : "Off"],
-      ["Stock-trade tariff, proposed option", byId("trade-option").checked ? "On. Retirement " + byId("trade-oasi").value + " billion and hospital insurance " + byId("trade-hi").value + " billion of 2026 dollars each year" : "Off"],
+      ["Stock-trade tariff, proposed option", byId("trade-option").checked ? "On. 0.298% on the buy and 0.298% on the sale. Retirement " + byId("trade-oasi").value + " billion, disability " + byId("trade-di").value + " billion, and hospital insurance " + byId("trade-hi").value + " billion of 2026 dollars each year" : "Off"],
       ["Slower yearly benefit increase, proposed option", byId("cola-option").checked ? "On. The yearly Social Security raise uses the chained price index, about 0.3 percentage points less than today’s raise. Hospital insurance is unchanged." : "Off"],
       ["Tier 1 soft cap", byId("even-rates").checked ? "Removed. About the same payroll rate is used on every tier. This is not Current Law." : "On. Tier 1 stays at or under 13.45% Social Security and 3.65% Medicare."],
       ["Newly taxed earnings and future benefits", "Do not raise benefits above today’s wage base"],

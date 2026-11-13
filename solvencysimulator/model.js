@@ -536,19 +536,26 @@
       }
 
       /* Proposed options. Billions of 2026 dollars, same price scaling as the
-         federal transfer. Retirement receives its share directly. Hospital
-         insurance receives its own share. Disability is not assigned one.
+         federal transfer. Retirement, disability, and hospital insurance each
+         receive their own share. A missing or empty share is zero.
          Not Current Law. Paid each year through 2100. */
       var extraOasi = Number(scenario.extraOasi);
       var extraHi = Number(scenario.extraHi);
+      var extraDi = Number(scenario.extraDi);
       if (!isFinite(extraOasi) || extraOasi < 0) extraOasi = 0;
       if (!isFinite(extraHi) || extraHi < 0) extraHi = 0;
-      if (extraOasi > 0 || extraHi > 0) {
+      if (!isFinite(extraDi) || extraDi < 0) extraDi = 0;
+      if (extraOasi > 0 || extraHi > 0 || extraDi > 0) {
         var extraOasiNominal = extraOasi * infl;
         var extraHiNominal = extraHi * infl;
+        var extraDiNominal = extraDi * infl;
         oasiIncome += extraOasiNominal;
+        diIncome += extraDiNominal;
         hiIncome += extraHiNominal;
-        if (payroll > 0) oasiIncomeRate += (extraOasiNominal / payroll) * 100;
+        if (payroll > 0) {
+          oasiIncomeRate += (extraOasiNominal / payroll) * 100;
+          diIncomeRate += (extraDiNominal / payroll) * 100;
+        }
         if (hiPayroll > 0) hiIncomeRate += (extraHiNominal / hiPayroll) * 100;
       }
 
@@ -671,8 +678,10 @@
     if (!isFinite(federalTransfer) || federalTransfer < 0) federalTransfer = 0;
     var extraOasi = Number(input.extraOasi);
     var extraHi = Number(input.extraHi);
+    var extraDi = Number(input.extraDi);
     if (!isFinite(extraOasi) || extraOasi < 0) extraOasi = 0;
     if (!isFinite(extraHi) || extraHi < 0) extraHi = 0;
+    if (!isFinite(extraDi) || extraDi < 0) extraDi = 0;
     var cutoffs = input.cutoffs || [1000000, 5000000, 10000000];
     var locked = [];
     if (input.lockedTiers) {
@@ -738,6 +747,7 @@
       base.federalTransfer = federalTransfer;
       base.extraOasi = extraOasi;
       base.extraHi = extraHi;
+      base.extraDi = extraDi;
       base.chainedCola = !!input.chainedCola;
       base.chainedColaYear = effective;
       base.targetYear = target;
