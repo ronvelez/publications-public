@@ -1,1 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A free, private first step for women and men thinking about divorce who do not know where to start. Sketch monthly money, a rough home picture, and preparation steps in your browser. Nothing you type is saved or sent." />
+  <title>Next Chapter: Pre-Divorce Clarity &amp; Readiness Planner</title>
+  <style>
+    :root {
+      --bg: #f6f8fa;
+      --surface: #ffffff;
+      --surface-alt: #f0f4f8;
+      --surface-solo: #f0fdf4;
+      --surface-note: #eff6ff;
+      --border: #cbd5e1;
+      --border-solo: #86efac;
+      --border-note: #bfdbfe;
+      --text: #1e293b;
+      --muted: #475569;
+      --primary: #1d4ed8;
+      --primary-hover: #1e40af;
+      --danger: #b91c1c;
+      --danger-hover: #991b1b;
+      --success: #15803d;
+      --focus-ring: #2563eb;
+      --radius: 10px;
+    }
 
+    * { box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      overflow-wrap: break-word;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 0.75rem;
+      top: -3rem;
+      background: #fff;
+      color: var(--primary);
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      z-index: 1100;
+      font-weight: 700;
+    }
+
+    .skip-link:focus { top: 0.5rem; }
+
+    .safety-bar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 0.65rem 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      border-bottom: 2px solid #334155;
+    }
+
+    .safety-notice {
+      font-size: 0.92rem;
+      max-width: 820px;
+      margin: 0;
+    }
+
+    .safety-notice strong { color: #93c5fd; }
+
+    .btn-quick-exit {
+      background: var(--danger);
+      color: #ffffff;
+      border: 2px solid #fecaca;
+      border-radius: 6px;
+      padding: 0.55rem 1.1rem;
+      min-height: 44px;
+      min-width: 148px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    .btn-quick-exit:hover { background: var(--danger-hover); }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3.5rem;
+    }
+
+    header.hero, section.card, footer.card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    header.hero h1, section.card h2, footer.card h2 {
+      margin: 0 0 0.4rem;
+      font-size: 1.55rem;
+      color: #0f172a;
+    }
+
+    section.card h2 { font-size: 1.25rem; }
+
+    .lead { margin: 0; }
+
+    .site-rule {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 1.25rem 0 0.9rem;
+    }
+
+    .site-credit {
+      margin: 0 0 0.35rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .privacy-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.85rem;
+    }
+
+    .badge {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .directions {
+      background: var(--surface-note);
+      border: 1px solid var(--border-note);
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+      margin: 1rem 0 0;
+    }
+
+    .directions h2, .directions h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1rem;
+      color: #0f172a;
+    }
+
+    .directions ol, .directions ul { margin: 0.35rem 0 0; padding-left: 1.25rem; }
+    .directions li { margin: 0.28rem 0; }
+
+    .section-sub { margin: 0 0 1rem; }
+
+    .grid-2,
+    .grid-3,
+    .comparison-grid,
+    .link-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+    }
+
+    .field { display: flex; flex-direction: column; gap: 0.35rem; }
+
+    label { font-weight: 700; font-size: 0.95rem; }
+
+    .field-help { margin: 0; font-size: 0.92rem; }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.55rem 0.7rem;
+      min-height: 44px;
+      border: 1px solid #94a3b8;
+      border-radius: 6px;
+      font-size: 1rem;
+      color: var(--text);
+      background: #fff;
+    }
+
+    textarea { min-height: 7rem; }
+
+    input[type="range"] {
+      width: 100%;
+      min-height: 32px;
+      cursor: pointer;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--focus-ring);
+      outline-offset: 2px;
+    }
+
+    .state-line {
+      margin: 0.15rem 0 0;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .note-line {
+      min-height: 1.2em;
+      font-weight: 600;
+    }
+
+    .comparison-grid { margin-top: 1rem; }
+
+    .comparison-col {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.15rem;
+    }
+
+    .comparison-col.post-transition {
+      background: var(--surface-solo);
+      border-color: var(--border-solo);
+    }
+
+    .comparison-col h3 { margin: 0 0 0.75rem; font-size: 1.05rem; }
+
+    .metric-row, .metric-total {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin: 0.45rem 0;
+      font-size: 0.95rem;
+    }
+
+    .metric-total {
+      font-size: 1.02rem;
+      border-top: 1px solid #cbd5e1;
+      padding-top: 0.55rem;
+      margin-top: 0.65rem;
+    }
+
+    .surplus { color: var(--success); }
+    .deficit { color: var(--danger); }
+    .even { color: var(--text); }
+
+    .support-box {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .toggle-group {
+      display: flex;
+      width: 100%;
+      max-width: 280px;
+      border: 1px solid #94a3b8;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .toggle-group button {
+      border: none;
+      background: #fff;
+      padding: 0.45rem 0.95rem;
+      min-height: 44px;
+      flex: 1 1 50%;
+      min-width: 0;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    .toggle-group button.active { background: var(--primary); color: #fff; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1rem;
+      min-height: 44px;
+      border-radius: 6px;
+      border: 1px solid var(--primary);
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      cursor: pointer;
+      text-align: center;
+      white-space: normal;
+      max-width: 100%;
+    }
+
+    .btn:hover { background: var(--primary-hover); }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--primary);
+      border: 1px solid #93c5fd;
+    }
+
+    .btn-secondary:hover { background: #eff6ff; }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      margin-top: 0.35rem;
+    }
+
+    .link-grid { margin-top: 0.75rem; }
+
+    .checklist-category {
+      margin-top: 1rem;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 0.85rem;
+    }
+
+    .checklist-category h3 { margin: 0 0 0.5rem; font-size: 1rem; }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      padding: 0.4rem 0;
+      min-height: 44px;
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+
+    .check-item input[type="checkbox"] {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      min-height: 24px;
+      margin-top: 2px;
+      cursor: pointer;
+    }
+
+    .check-item.done span {
+      text-decoration: line-through;
+      color: var(--muted);
+    }
+
+    .add-task-row { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+
+    .prompt-box {
+      background: #f8fafc;
+      border: 1px solid #94a3b8;
+      border-radius: 6px;
+      padding: 0.9rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.88rem;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      max-width: 100%;
+      margin-top: 0.75rem;
+    }
+
+    .caution {
+      background: #fff7ed;
+      border: 1px solid #fdba74;
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      margin: 0 0 1rem;
+    }
+
+    .status-pill { font-size: 0.92rem; font-weight: 700; color: var(--primary); }
+
+    h3.group-title { font-size: 1rem; margin: 1.15rem 0 0.35rem; }
+
+    .formula {
+      background: var(--surface-alt);
+      border-radius: 8px;
+      padding: 0.75rem 0.9rem;
+      margin: 0.5rem 0 0;
+    }
+
+    .print-only { display: none; }
+
+    @media (min-width: 700px) {
+      .grid-2,
+      .comparison-grid,
+      .link-grid,
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 960px) {
+      .grid-3,
+      .link-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 699px) {
+      .container { padding: 1rem 0.85rem 2.5rem; }
+      header.hero, section.card, footer.card { padding: 1rem; }
+      header.hero h1 { font-size: 1.35rem; }
+      .safety-bar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: max(0.65rem, env(safe-area-inset-top)) 0.85rem 0.65rem;
+      }
+      .safety-notice { font-size: 0.84rem; }
+      .btn-quick-exit,
+      .button-row .btn,
+      .link-grid .btn,
+      .add-task-row .btn { width: 100%; }
+      .add-task-row,
+      .button-row { flex-direction: column; align-items: stretch; }
+      .toggle-group { max-width: none; }
+      input[type="range"] { min-height: 44px; }
+    }
+
+    @media print {
+      .safety-bar, .no-print, .skip-link, .btn, .btn-secondary, .link-grid, .add-task-row, input[type="range"] {
+        display: none !important;
+      }
+
+      .print-only { display: block; }
+
+      body { background: #fff; color: #000; }
+
+      .container { max-width: 100%; padding: 0; }
+
+      header.hero, section.card, footer.card {
+        border: 1px solid #cbd5e1;
+        box-shadow: none;
+        break-inside: avoid;
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link no-print" href="#main">Skip to worksheet</a>
+
+  <div class="safety-bar no-print" role="region" aria-label="Safety and privacy controls">
+    <p class="safety-notice">
+      <strong>Nothing you type is saved or sent.</strong>
+      <strong>Esc or Quick Exit</strong> clears this page, even while you are typing, and opens a weather site.
+      Use a private window on a shared device. Links you open can include a ZIP or state.
+    </p>
+    <button type="button" class="btn-quick-exit" id="quick-exit-btn" title="Clears this page and opens a weather site. Same as the Esc key.">
+      Quick Exit (Esc)
+    </button>
+  </div>
+
+  <main class="container" id="main">
+    <noscript>
+      <p class="directions">This worksheet needs JavaScript to total figures, match a ZIP, and run Quick Exit. You can still read the page. The script does not send what you type to a server.</p>
+    </noscript>
+
+    <header class="hero">
+      <h1>Next Chapter: Pre-Divorce Clarity &amp; Readiness Planner</h1>
+      <p class="lead">If you are thinking about divorce and you do not know where to start, you can begin here. Women and men both use this free public-service page when they feel scared, stuck, or unsure what the process and the outcomes even look like. You do not need a lawyer chosen, a court date, or perfect numbers. The page stays in this browser tab. It is not a law firm, a court, or a financial advisor.</p>
+      <p class="print-only">A private planning worksheet. Rough numbers are enough. It is okay to ask for help. Family, friends, and professional services are available, and it is best not to plan this alone. Support, the house, and parenting are decided later in your state process. Keep this paper somewhere private.</p>
+      <div class="privacy-badges" aria-hidden="true">
+        <span class="badge">Free public service</span>
+        <span class="badge">A private first step</span>
+        <span class="badge">Nothing is saved</span>
+        <span class="badge">Not legal, tax, or financial advice</span>
+      </div>
+
+      <div class="directions no-print" id="start-here">
+        <h2>You can start without knowing the ending</h2>
+        <p>Looking at this page does not file a case. You can stop after one section. A round number is enough. Nothing you type is saved on this device or sent to a server for this project.</p>
+        <h3>It is okay to ask for help</h3>
+        <p>It is best not to plan a divorce all alone. You are allowed to ask for help. Family, friends, and professional services are all available: a trusted relative, a friend, a mediator, a family lawyer, a certified divorce financial analyst, a therapist, or an advocate. You can choose the person who feels safe to tell. This page can organize a few questions before that conversation. It does not replace the people who can walk through it with you.</p>
+        <h3>A plain map of what often happens</h3>
+        <p>States write different rules. A judge, a mediator, or a written agreement decides the real outcome. This is only the shape of the path, so the blank space has some edges.</p>
+        <ol>
+          <li><strong>You are still deciding, or you have decided and need a first picture.</strong> This page is for that stage. You can learn before you tell anyone.</li>
+          <li><strong>People usually gather income, bills, debts, accounts, and papers about the home.</strong> Section 6 is a starter list. One item today is a real start.</li>
+          <li><strong>Child support and spousal support follow your state’s rules.</strong> Some states publish a formula. Many leave spousal support to a judge. Section 2 links to an outside child-support calculator and a plain-language spousal-support guide. You can type a monthly figure back here and see it beside rent, food, and other bills. The boxes on this page do not calculate the guideline.</li>
+          <li><strong>The house, retirement, and debts usually come later, in the property conversation.</strong> Section 3 only subtracts a mortgage from a home value. It does not divide the house or say who should stay.</li>
+          <li><strong>Many people then talk with a family mediator, a family lawyer, or a certified divorce financial analyst.</strong> Parenting time, support, and housing get worked out in that process. Section 4 can open those searches when you choose. This page does not contact them.</li>
+        </ol>
+        <h3>How to use the page when you feel lost</h3>
+        <ol>
+          <li>If you want, enter a 5-digit ZIP so some later links can name your state. Skip it if that feels safer. Do not type a name, street address, phone, email, or account number.</li>
+          <li>In section 2, sketch money as the household has it now, then a guess of money on your own. Leave a box at zero when you do not know.</li>
+          <li>Read the two monthly results. If you want a paper copy, print before you leave. Esc or Quick Exit erases this visit and opens a weather page.</li>
+          <li>Section 5 is optional. It can write text you paste into a chatbot you already use. This website is not connected to any chatbot. Read that section before you copy anything.</li>
+        </ol>
+        <p>If you are in danger, go to section 4. The National Domestic Violence Hotline there is free, confidential, and answered all day and night. Quick Exit stays at the top of the screen.</p>
+      </div>
+    </header>
+
+    <section class="card" aria-labelledby="sec-context">
+      <h2 id="sec-context">1. Where you live, and who depends on you</h2>
+      <p class="section-sub">A ZIP is optional. It only helps some links in section 4 name a place, and it is not stored. If the place name looks wrong, ignore those links and keep going. The questions beside it describe the household in your own words. The closest fit is enough. These answers do not change the dollar totals.</p>
+
+      <div class="grid-3">
+        <div class="field">
+          <label for="zip-input">5-digit ZIP code (optional)</label>
+          <input type="text" id="zip-input" maxlength="5" inputmode="numeric" pattern="[0-9]{5}" autocomplete="off" placeholder="5 digits, or leave blank" />
+          <p class="state-line" id="state-display" aria-hidden="true">Place: Not entered</p>
+          <p class="field-help no-print" id="link-scope-note" aria-live="polite">Skip this if it feels safer to leave it blank. A ZIP only names a place for some links. Matching uses a built-in prefix list, so a few special codes can be wrong.</p>
+        </div>
+        <div class="field">
+          <label for="income-position">Your income relative to the household</label>
+          <p class="field-help no-print" id="help-income-position">If you are the one who earns less, or you care for the home full time, that is a valid answer. This choice does not change the dollar totals.</p>
+          <select id="income-position" aria-describedby="help-income-position">
+            <option value="" selected>Choose the closest fit</option>
+            <option value="primary earner">Primary earner</option>
+            <option value="roughly equal earner">Roughly equal earners</option>
+            <option value="lower earner / part-time">Lower earner or part-time</option>
+            <option value="full-time homemaker / caregiver">Full-time homemaker or caregiver</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="dependent-stage">Children or other dependents</label>
+          <p class="field-help no-print" id="help-dependents">Closest fit is enough. This describes school and care. It does not calculate support.</p>
+          <select id="dependent-stage" aria-describedby="help-dependents">
+            <option value="" selected>Choose the closest fit</option>
+            <option value="no children">No children</option>
+            <option value="young children (under 12)">Young children (under 12)</option>
+            <option value="teens / high schoolers">Teens or high schoolers</option>
+            <option value="college-age / young adults">College-age or young adults</option>
+            <option value="adult children (independent)">Adult children, independent</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="minor-count">Number of children under 18</label>
+          <p class="field-help no-print" id="help-minors">Use 0 if there are none. This count does not calculate child support.</p>
+          <input type="number" id="minor-count" min="0" max="12" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-minors" />
+        </div>
+        <div class="field">
+          <label for="caregiving-role">Day-to-day caregiving</label>
+          <p class="field-help no-print" id="help-care">How the days look now, or how you expect them to look. This does not create a parenting plan.</p>
+          <select id="caregiving-role" aria-describedby="help-care">
+            <option value="" selected>Choose the closest fit</option>
+            <option value="shared / 50-50 caregiving">Shared, about 50-50</option>
+            <option value="primary day-to-day caregiver">Primary day-to-day caregiver</option>
+            <option value="secondary / schedule-based caregiver">Secondary or schedule-based caregiver</option>
+            <option value="not applicable">Not applicable</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="sec-cashflow">
+      <h2 id="sec-cashflow">2. Money now, and a sketch of money on your own</h2>
+      <p class="section-sub">Start with life as it is today, then guess one household after a separation. If you do not know a number, use a round figure or leave zero. You can change it. The slider is only for exploring: under $10,000 it moves by about $200, and above $30,000 it jumps by about $3,000 to $4,000. Typing keeps the exact dollar, up to $100,000 a month. Moving the slider afterward replaces that amount with the nearest slider step.</p>
+      <p class="print-only">Figures are amounts entered for personal planning. They are not a court calculation. Support typed below is included only in the solo column.</p>
+      <p class="note-line no-print" id="amount-note" aria-live="polite"></p>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="money-hh-income">Current household monthly take-home</label>
+          <p class="field-help no-print" id="help-hh-income">Money that reaches the household after taxes, health insurance, and retirement contributions. A rough total is enough. Do not enter an account number.</p>
+          <input type="number" id="money-hh-income" min="0" max="100000" step="1" inputmode="numeric" autocomplete="off" value="0" aria-describedby="help-hh-income" />
+          <input type="range" class="no-print" id="slider-hh-income" min="0" max="100" value="0" aria-label="Slider for current household monthly take-home" aria-valuemin="0" aria-valuemax="100" aria-valuetext="$0" />
+        </div>
+        <div class="field">
+          <label for="money-hh-exp">Current household monthly living expenses</label>
+          <p class="field-help no-print" id="help-hh-exp">Housing, utilities, food, transportation, insurance, childcare, and minimum debt payments you pay today.</p>
+          <input type="number" id="money-hh-exp" min="0" max="100000" step="1" inputmode="numeric" autocomplete="off" value="0" aria-describedby="help-hh-exp" />
+          <input type="range" class="no-print" id="slider-hh-exp" min="0" max="100" value="0" aria-label="Slider for current household monthly living expenses" aria-valuemin="0" aria-valuemax="100" aria-valuetext="$0" />
+        </div>
+        <div class="field">
+          <label for="money-solo-income">Your solo monthly take-home</label>
+          <p class="field-help no-print" id="help-solo-income">Only your own take-home, before support. If you are not earning wages right now, leave this at 0. Put any support you might receive in the boxes below.</p>
+          <input type="number" id="money-solo-income" min="0" max="100000" step="1" inputmode="numeric" autocomplete="off" value="0" aria-describedby="help-solo-income" />
+          <input type="range" class="no-print" id="slider-solo-income" min="0" max="100" value="0" aria-label="Slider for your solo monthly take-home" aria-valuemin="0" aria-valuemax="100" aria-valuetext="$0" />
+        </div>
+        <div class="field">
+          <label for="money-solo-exp">Your solo monthly living expenses</label>
+          <p class="field-help no-print" id="help-solo-exp">Housing, utilities, food, insurance, and child costs you expect to pay yourself. Leave out support you would pay. Pay adds that amount below.</p>
+          <input type="number" id="money-solo-exp" min="0" max="100000" step="1" inputmode="numeric" autocomplete="off" value="0" aria-describedby="help-solo-exp" />
+          <input type="range" class="no-print" id="slider-solo-exp" min="0" max="100" value="0" aria-label="Slider for your solo monthly living expenses" aria-valuemin="0" aria-valuemax="100" aria-valuetext="$0" />
+        </div>
+      </div>
+
+      <h3 class="group-title">Child support and spousal support</h3>
+      <p class="section-sub no-print">These are often the questions that feel largest, and they are also the ones this page cannot decide. A monthly guess still helps: you can see that amount next to the rest of a household. Receive means money that would come to you. Pay means money you would send. The household column stays as life is today. These boxes do not run your state’s guideline worksheet.</p>
+      <div class="directions no-print" id="support-estimator-note">
+        <h3>If you want a closer child-support number</h3>
+        <p>The free calculator at statechildsupportcalc.com covers every state and the District of Columbia. That site is separate from this worksheet. This page is not connected to it, and this link does not send your ZIP or the amounts you typed here. Their estimate is a simplified guideline, and it is still not a court order.</p>
+        <p>Open the calculator, then come back and type the monthly result into the child-support box below. Choose Receive if that money would come to you, or Pay if you would pay it.</p>
+        <div class="button-row">
+          <a id="link-support-estimator" class="btn btn-secondary" href="https://statechildsupportcalc.com/" target="_blank" rel="noopener noreferrer">Open the state child-support calculator</a>
+        </div>
+        <h3>If you want to understand spousal support</h3>
+        <p>Spousal support, sometimes called alimony or maintenance, is less predictable than child support. The guide at spousalsupportcalc.com explains, in plain language, how states approach it. That site is separate from this worksheet. This page is not connected to it, and this link does not send your ZIP or the amounts you typed here. Some states use a formula. Many leave the amount and the length of time to a judge, based on the length of the marriage, who earns what, and who needs time to become self-supporting. Read the guide, then type a monthly amount into the spousal-support box below and choose Receive or Pay. Use the official statute search in that box when you want the law itself.</p>
+        <div class="button-row">
+          <a id="link-alimony-guide" class="btn btn-secondary" href="https://spousalsupportcalc.com/guides/state-spousal-support-guidelines/" target="_blank" rel="noopener noreferrer">Open the state spousal-support guide</a>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="support-box">
+          <label for="alimony-amount">Monthly alimony or spousal support to test</label>
+          <p class="field-help no-print" id="help-alimony">Type a monthly amount to test, including a figure you chose after reading the state guide above. Rules differ by state, marriage length, and earning capacity. This box does not calculate a guideline.</p>
+          <div class="toggle-group" role="group" aria-label="Alimony direction">
+            <button type="button" id="alimony-receive-btn" class="active" aria-pressed="true">Receive</button>
+            <button type="button" id="alimony-pay-btn" aria-pressed="false">Pay</button>
+          </div>
+          <input type="number" id="alimony-amount" min="0" max="100000" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-alimony" />
+          <div class="button-row no-print">
+            <a id="link-alimony-statute" class="btn btn-secondary" href="https://www.google.com/search?q=spousal+support+alimony+statute+site%3A.gov" target="_blank" rel="noopener noreferrer">Search official alimony statutes (site:.gov)</a>
+          </div>
+        </div>
+        <div class="support-box">
+          <label for="child-support-amount">Monthly child support to test</label>
+          <p class="field-help no-print" id="help-cs">Type a monthly amount to test, including a figure you got from the state calculator above. This box does not calculate the guideline itself.</p>
+          <div class="toggle-group" role="group" aria-label="Child support direction">
+            <button type="button" id="cs-receive-btn" class="active" aria-pressed="true">Receive</button>
+            <button type="button" id="cs-pay-btn" aria-pressed="false">Pay</button>
+          </div>
+          <input type="number" id="child-support-amount" min="0" max="100000" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-cs" />
+          <div class="button-row no-print">
+            <a id="link-cs-statute" class="btn btn-secondary" href="https://www.google.com/search?q=child+support+guidelines+statute+site%3A.gov" target="_blank" rel="noopener noreferrer">Search official child-support guidelines (site:.gov)</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="formula">
+        <p style="margin:0 0 0.35rem;">Current household is take-home minus living expenses. Support you type is left out of that column, because that column is life as it is today.</p>
+        <p style="margin:0;">Your solo picture is your own take-home, plus any support set to Receive, minus your own living expenses and any support set to Pay. “Left over” means the guess covers the bills with something remaining. “Shortfall” means the guess does not cover them yet. Either result is information, and you can change the inputs.</p>
+      </div>
+
+      <div id="cashflow-comparison-card" class="comparison-grid" aria-live="polite">
+        <div class="comparison-col">
+          <h3>Current household</h3>
+          <div class="metric-row"><span>Monthly take-home</span> <strong id="base-income">$0</strong></div>
+          <div class="metric-row"><span>Monthly living expenses</span> <strong id="base-expenses">$0</strong></div>
+          <div class="metric-total"><span>Monthly result</span> <strong id="base-net" class="even">$0 even</strong></div>
+        </div>
+        <div class="comparison-col post-transition">
+          <h3>Your solo picture</h3>
+          <div class="metric-row"><span>Solo take-home</span> <strong id="solo-takehome">$0</strong></div>
+          <div class="metric-row"><span>Support set to Receive</span> <strong id="solo-support-in">$0</strong></div>
+          <div class="metric-row"><span>Solo living expenses</span> <strong id="solo-living">$0</strong></div>
+          <div class="metric-row"><span>Support set to Pay</span> <strong id="solo-support-out">$0</strong></div>
+          <div class="metric-total"><span>Monthly result</span> <strong id="solo-net" class="even">$0 even</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="sec-home">
+      <h2 id="sec-home">3. The house, if you want a rough picture</h2>
+      <p class="section-sub">Skip this if housing feels like too much today. If you stay, use round numbers. Leave out the street address and any loan number. The result is the home value you type minus the mortgage you type. Selling costs, repairs, taxes, and who keeps the house are decided later, with a professional and your state’s property rules.</p>
+      <p class="print-only">Gross equity is approximate value minus remaining mortgage, before selling costs or a division decision. The monthly tax line is not included in section 2 expenses.</p>
+
+      <div class="grid-3">
+        <div class="field">
+          <label for="home-value">Approximate home value ($)</label>
+          <p class="field-help no-print" id="help-home">A round market value is enough.</p>
+          <input type="number" id="home-value" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-home" />
+          <a class="no-print" href="https://www.zillow.com/homes/" target="_blank" rel="noopener noreferrer">Open Zillow in a new tab (no address is sent from this page)</a>
+        </div>
+        <div class="field">
+          <label for="mortgage-balance">Remaining mortgage balance ($)</label>
+          <p class="field-help no-print" id="help-mortgage">The approximate payoff amount, not an account number.</p>
+          <input type="number" id="mortgage-balance" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-mortgage" />
+        </div>
+        <div class="field">
+          <label for="property-tax">Annual property tax ($ per year)</label>
+          <p class="field-help no-print" id="help-tax">The monthly line divides this by 12 and rounds to the nearest dollar. That monthly tax is not added to the living expenses in section 2. If those expenses already include property tax, do not count it a second time.</p>
+          <input type="number" id="property-tax" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-tax" />
+        </div>
+      </div>
+
+      <div class="comparison-col" style="margin-top:1rem;" aria-live="polite">
+        <div class="metric-row"><span>Estimated gross equity</span> <strong id="est-equity" class="even">$0</strong></div>
+        <div class="metric-row"><span>Property tax per month (not included in section 2)</span> <strong id="monthly-tax">$0 a month</strong></div>
+      </div>
+    </section>
+
+    <section class="card no-print" aria-labelledby="sec-resources">
+      <h2 id="sec-resources">4. People and places that can help next</h2>
+      <p class="section-sub">It is okay to ask for help, and it is best not to plan this alone. Family and friends can sit with you, listen, and help you think. Professional services can explain the law, the money, and a safety plan. You do not have to open any of these buttons today. When you do, each button leaves this page and opens another website. This planner does not contact those sites and does not control what they ask you. Apartment, mediator, and attorney searches include your ZIP and place name when a state, territory, or the District of Columbia was recognized. The financial-specialist search includes the state or territory name only. The therapist directory and the safety hotline do not include your ZIP or state. This whole section is left off the printed worksheet.</p>
+
+      <h3 class="group-title">If school or returning to work is part of the next chapter</h3>
+      <p class="section-sub">These public sites do not receive your ZIP from this page. They can help you look at training, a career change, or the cost of school. That research is yours to do when you are ready.</p>
+      <div class="link-grid">
+        <a class="btn btn-secondary" href="https://collegescorecard.ed.gov/" target="_blank" rel="noopener noreferrer">U.S. Department of Education College Scorecard</a>
+        <a class="btn btn-secondary" href="https://bigfuture.collegeboard.org/" target="_blank" rel="noopener noreferrer">College Board BigFuture</a>
+        <a class="btn btn-secondary" href="https://www.mynextmove.org/" target="_blank" rel="noopener noreferrer">O*NET My Next Move</a>
+        <a class="btn btn-secondary" href="https://studentaid.gov/aid-estimator/" target="_blank" rel="noopener noreferrer">Federal Student Aid Estimator</a>
+      </div>
+
+      <h3 class="group-title">Searches that can include your ZIP and state</h3>
+      <p class="section-sub">A mediator helps people negotiate. A family lawyer advises you and can represent you in court. An apartment search is here if you may need your own place. Open these only when you want that search to include the ZIP you typed.</p>
+      <div class="link-grid" id="directory-links">
+        <a class="btn btn-secondary" id="dir-apartments" href="https://www.google.com/search?q=apartments+for+rent" target="_blank" rel="noopener noreferrer">Apartments and rentals</a>
+        <a class="btn btn-secondary" id="dir-mediators" href="https://www.google.com/search?q=divorce+family+mediator" target="_blank" rel="noopener noreferrer">Family mediators</a>
+        <a class="btn btn-secondary" id="dir-attorneys" href="https://www.google.com/search?q=family+law+divorce+attorney" target="_blank" rel="noopener noreferrer">Family law attorneys</a>
+      </div>
+
+      <h3 class="group-title">Money specialists, and someone to talk with</h3>
+      <p class="section-sub">A certified divorce financial analyst, often called a CDFA, helps people understand the money side of a divorce. A therapist is for you, and that directory is not given your ZIP or state.</p>
+      <div class="link-grid">
+        <a class="btn btn-secondary" id="dir-cdfa" href="https://www.google.com/search?q=Certified+Divorce+Financial+Analyst+CDFA" target="_blank" rel="noopener noreferrer">CDFAs and divorce accountants</a>
+        <a class="btn btn-secondary" id="dir-therapists" href="https://www.psychologytoday.com/us/therapists" target="_blank" rel="noopener noreferrer">Therapist directory (no ZIP added)</a>
+      </div>
+
+      <h3 class="group-title">If you need to talk with someone now</h3>
+      <p class="section-sub">If you are afraid, you can call before you fill in another box. The National Domestic Violence Hotline is free, confidential, and answered 24 hours a day. Call 1-800-799-7233, text START to 88788, or use chat at thehotline.org. TTY: 1-800-787-3224. Advocates can help you think about safety. This block is not printed, so it will not appear on a paper worksheet.</p>
+      <div class="link-grid">
+        <a class="btn btn-secondary" id="dir-shelters" href="https://www.thehotline.org/" target="_blank" rel="noopener noreferrer">Open the National Domestic Violence Hotline</a>
+      </div>
+    </section>
+
+    <section class="card no-print" aria-labelledby="sec-ai">
+      <h2 id="sec-ai">5. Optional text for a chatbot you already use</h2>
+      <p class="section-sub">You can skip this. Many people never use it. It is here only if you want to take the picture on this screen and ask a chatbot you already use for general feedback. The text it writes is a prompt you copy yourself.</p>
+      <div class="directions">
+        <h3>How this convenience option works</h3>
+        <ol>
+          <li>Choose “Generate the prompt.” This page writes a block of text from the answers currently on the screen. You can skip this section entirely.</li>
+          <li>Before that text is written, this page removes personally identifiable information. Exact dollar amounts, your ZIP code, your notes, and your checklist wording are left out. This page has no fields for a name, street address, phone number, email address, or account number, so those cannot be included.</li>
+          <li>The text can still include a state or territory name, the profile choices you selected, the number of children under 18 you entered, and rounded percentages instead of dollars. Read the whole text before you copy it.</li>
+          <li>Copy the text and paste it into the chatbot you selected. This website does not send the text anywhere.</li>
+        </ol>
+      </div>
+      <div class="caution">
+        <p style="margin:0;">This website is in no way connected to any outside AI chatbot or system. Generating or copying the prompt does not open, sign you in to, or contact a chatbot. Please exercise caution and privacy when sharing information with an outside AI chat system. Do not add your name, address, account numbers, or other private details after you paste the text.</p>
+      </div>
+      <p class="field-help">The prompt is left off the printed worksheet. If you copied it, Quick Exit tries to clear the clipboard. If the browser blocks that, clear the clipboard yourself before someone else uses this device.</p>
+      <div class="button-row">
+        <button type="button" class="btn" id="generate-prompt-btn">Generate the prompt</button>
+        <button type="button" class="btn btn-secondary" id="copy-prompt-btn">Copy the prompt</button>
+        <span class="status-pill" id="copy-status" role="status" aria-live="polite"></span>
+      </div>
+      <div class="prompt-box" id="ai-prompt-output" tabindex="-1" aria-live="polite">Choose “Generate the prompt” if you want text to paste into a chatbot you already use. Nothing is sent from this page.</div>
+    </section>
+
+    <section class="card" aria-labelledby="sec-checklist">
+      <h2 id="sec-checklist">6. A first list, so you are not starting from a blank page</h2>
+      <p class="section-sub no-print">You do not have to finish this today. Finding one paper, or writing one question, is a real start. This is a starter list for gathering records and thinking about privacy. A court may later ask for more. Checked items, added steps, and notes last only until you close the tab or use Quick Exit. Print first if you need a paper copy. The printout includes what you typed, including a ZIP and these notes, so keep that paper somewhere private. The hotline in section 4 is left off the printout.</p>
+      <p class="print-only">Starter list and notes from this visit. Not a complete legal checklist.</p>
+
+      <div id="checklist-container">
+        <div class="checklist-category">
+          <h3>Documents and vital records</h3>
+          <label class="check-item"><input type="checkbox" /> <span>Locate passports, birth certificates, Social Security cards, and the marriage certificate</span></label>
+          <label class="check-item"><input type="checkbox" /> <span>Download the last 3 years of tax returns and W-2 or 1099 forms</span></label>
+          <label class="check-item"><input type="checkbox" /> <span>Gather deeds, mortgage statements, vehicle titles, and insurance policies</span></label>
+        </div>
+        <div class="checklist-category">
+          <h3>Financial inventory</h3>
+          <label class="check-item"><input type="checkbox" /> <span>List checking, savings, brokerage, retirement, and 529 accounts without writing full account numbers here</span></label>
+          <label class="check-item"><input type="checkbox" /> <span>Pull a free credit report at AnnualCreditReport.com to see open credit lines</span></label>
+          <label class="check-item"><input type="checkbox" /> <span>List recurring bills, subscriptions, and automatic payments</span></label>
+        </div>
+        <div class="checklist-category">
+          <h3>Privacy and next steps</h3>
+          <label class="check-item"><input type="checkbox" /> <span>Review email, shared photo albums, and device location sharing</span></label>
+          <label class="check-item"><input type="checkbox" /> <span>If you need one, set up a separate email address and a private mailing address</span></label>
+        </div>
+        <div class="checklist-category" id="custom-task-list">
+          <h3>Steps you add</h3>
+          <p class="field-help" id="custom-task-empty">None yet.</p>
+        </div>
+      </div>
+
+      <div class="add-task-row no-print">
+        <input type="text" id="new-task-input" maxlength="180" autocomplete="off" placeholder="Add a short step for this visit" aria-label="Step to add" />
+        <button type="button" class="btn" id="add-task-btn">Add step</button>
+      </div>
+      <p class="note-line no-print" id="task-note" aria-live="polite"></p>
+
+      <div class="field" style="margin-top:1rem;">
+        <label for="scratchpad">Notes for this visit</label>
+        <p class="field-help no-print" id="help-notes">Write the questions while they are in your head. A first meeting is easier when you already know what you want to ask. Up to 4,000 characters. Cleared on Quick Exit or when the tab closes.</p>
+        <textarea id="scratchpad" maxlength="4000" autocomplete="off" spellcheck="false" aria-describedby="help-notes" placeholder="Write questions you want to ask a professional."></textarea>
+      </div>
+
+      <div class="button-row no-print">
+        <button type="button" class="btn btn-secondary" id="print-btn">Print or save a PDF worksheet</button>
+      </div>
+    </section>
+  </main>
+
+  <!--
+  # Reference only. This notice stays in the file and is not shown on the page.
+  # Copyright © 2026 Ron Velez, Founder, iCertifyServices LLC
+  #
+  # Provided as a free public service website. No PII is collected by the website.
+  #
+  # Permission is granted to copy and share this website code. Attribution is not required.
+  #
+  # The code is provided as is, without warranty of any kind, express or implied, including without limitation the warranties of merchantability, fitness for a particular purpose, and noninfringement. The copyright holder is not liable for any claim, damages, or other liability arising from the code or from its use.
+  -->
+  <footer class="card container" style="margin-top:0;">
+    <h2>About this worksheet</h2>
+    <p class="lead">Next Chapter is a free public-service worksheet, version 1.3.1, for women and men who are thinking about divorce and need a private place to begin. It is okay to ask for help. Family, friends, and professional services are available, and it is best not to plan this alone. The page is for education and personal organization. Rough numbers are enough. It does not calculate support, divide property, or recommend whether to leave or file. Read your state or territory’s official sources and talk with a qualified professional before you rely on a figure.</p>
+    <hr class="site-rule">
+    <p class="site-credit" id="site-credit">Provided as a free public service website. No PII is collected by the website.</p>
+    <p class="site-credit">Created by Ron Velez, Founder, iCertifyServices LLC. © 2026. You may copy and share this website code. Attribution is not required. The code is provided as is, without warranty.</p>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var PROMPT_PLACEHOLDER = 'Choose “Generate the prompt” if you want text to paste into a chatbot you already use. Nothing is sent from this page.';
+      var MONEY_CAP = 100000;
+
+      var state = {
+        zip: '',
+        stateName: '',
+        stateAbbr: '',
+        placeKind: '',
+        alimonyMode: 'receive',
+        childSupportMode: 'receive'
+      };
+
+      var money = { hhInc: 0, hhExp: 0, soloInc: 0, soloExp: 0 };
+
+      var moneyFields = [
+        ['hhInc', 'money-hh-income', 'slider-hh-income'],
+        ['hhExp', 'money-hh-exp', 'slider-hh-exp'],
+        ['soloInc', 'money-solo-income', 'slider-solo-income'],
+        ['soloExp', 'money-solo-exp', 'slider-solo-exp']
+      ];
+
+      // Public 3-digit ZIP prefixes, plus a few 5-digit exceptions.
+      // Military mail codes are labeled and are not treated as a state of residence.
+      var ZIP_EXACT = [
+        [96799, 96799, 'American Samoa', 'AS', 'territory'],
+        [96910, 96932, 'Guam', 'GU', 'territory'],
+        [96940, 96940, 'Palau', 'PW', 'territory'],
+        [96941, 96944, 'Federated States of Micronesia', 'FM', 'territory'],
+        [96950, 96952, 'Northern Mariana Islands', 'MP', 'territory'],
+        [96960, 96960, 'Marshall Islands', 'MH', 'territory'],
+        [96970, 96970, 'Marshall Islands', 'MH', 'territory']
+      ];
+
+      var ZIP_PREFIXES = [
+        [5, 5, 'New York', 'NY', 'state'],
+        [6, 7, 'Puerto Rico', 'PR', 'territory'],
+        [8, 8, 'U.S. Virgin Islands', 'VI', 'territory'],
+        [9, 9, 'Puerto Rico', 'PR', 'territory'],
+        [10, 27, 'Massachusetts', 'MA', 'state'],
+        [28, 29, 'Rhode Island', 'RI', 'state'],
+        [30, 38, 'New Hampshire', 'NH', 'state'],
+        [39, 49, 'Maine', 'ME', 'state'],
+        [50, 54, 'Vermont', 'VT', 'state'],
+        [55, 55, 'Massachusetts', 'MA', 'state'],
+        [56, 59, 'Vermont', 'VT', 'state'],
+        [60, 69, 'Connecticut', 'CT', 'state'],
+        [70, 89, 'New Jersey', 'NJ', 'state'],
+        [90, 99, 'Armed Forces Europe, the Middle East, Africa, and Canada', 'AE', 'military'],
+        [100, 149, 'New York', 'NY', 'state'],
+        [150, 196, 'Pennsylvania', 'PA', 'state'],
+        [197, 199, 'Delaware', 'DE', 'state'],
+        [200, 205, 'District of Columbia', 'DC', 'district'],
+        [206, 219, 'Maryland', 'MD', 'state'],
+        [220, 246, 'Virginia', 'VA', 'state'],
+        [247, 268, 'West Virginia', 'WV', 'state'],
+        [270, 289, 'North Carolina', 'NC', 'state'],
+        [290, 299, 'South Carolina', 'SC', 'state'],
+        [300, 319, 'Georgia', 'GA', 'state'],
+        [320, 339, 'Florida', 'FL', 'state'],
+        [340, 340, 'Armed Forces Americas', 'AA', 'military'],
+        [341, 342, 'Florida', 'FL', 'state'],
+        [344, 344, 'Florida', 'FL', 'state'],
+        [346, 347, 'Florida', 'FL', 'state'],
+        [349, 349, 'Florida', 'FL', 'state'],
+        [350, 369, 'Alabama', 'AL', 'state'],
+        [370, 385, 'Tennessee', 'TN', 'state'],
+        [386, 397, 'Mississippi', 'MS', 'state'],
+        [400, 427, 'Kentucky', 'KY', 'state'],
+        [430, 459, 'Ohio', 'OH', 'state'],
+        [460, 479, 'Indiana', 'IN', 'state'],
+        [480, 499, 'Michigan', 'MI', 'state'],
+        [500, 528, 'Iowa', 'IA', 'state'],
+        [530, 549, 'Wisconsin', 'WI', 'state'],
+        [550, 567, 'Minnesota', 'MN', 'state'],
+        [570, 577, 'South Dakota', 'SD', 'state'],
+        [580, 588, 'North Dakota', 'ND', 'state'],
+        [590, 599, 'Montana', 'MT', 'state'],
+        [600, 629, 'Illinois', 'IL', 'state'],
+        [630, 658, 'Missouri', 'MO', 'state'],
+        [660, 679, 'Kansas', 'KS', 'state'],
+        [680, 693, 'Nebraska', 'NE', 'state'],
+        [700, 714, 'Louisiana', 'LA', 'state'],
+        [716, 729, 'Arkansas', 'AR', 'state'],
+        [730, 749, 'Oklahoma', 'OK', 'state'],
+        [750, 799, 'Texas', 'TX', 'state'],
+        [800, 816, 'Colorado', 'CO', 'state'],
+        [820, 831, 'Wyoming', 'WY', 'state'],
+        [832, 838, 'Idaho', 'ID', 'state'],
+        [840, 847, 'Utah', 'UT', 'state'],
+        [850, 865, 'Arizona', 'AZ', 'state'],
+        [870, 884, 'New Mexico', 'NM', 'state'],
+        [885, 885, 'Texas', 'TX', 'state'],
+        [889, 898, 'Nevada', 'NV', 'state'],
+        [900, 961, 'California', 'CA', 'state'],
+        [962, 966, 'Armed Forces Pacific', 'AP', 'military'],
+        [967, 968, 'Hawaii', 'HI', 'state'],
+        [970, 979, 'Oregon', 'OR', 'state'],
+        [980, 994, 'Washington', 'WA', 'state'],
+        [995, 999, 'Alaska', 'AK', 'state']
+      ];
+
+      function resolveZip(zip) {
+        if (!/^\d{5}$/.test(zip)) return null;
+        var n = parseInt(zip, 10);
+        var i;
+        for (i = 0; i < ZIP_EXACT.length; i++) {
+          if (n >= ZIP_EXACT[i][0] && n <= ZIP_EXACT[i][1]) {
+            return { name: ZIP_EXACT[i][2], abbr: ZIP_EXACT[i][3], kind: ZIP_EXACT[i][4] };
+          }
+        }
+        var prefix = parseInt(zip.slice(0, 3), 10);
+        if (prefix === 969) {
+          return { name: 'more than one Pacific island jurisdiction', abbr: '969', kind: 'ambiguous' };
+        }
+        for (i = 0; i < ZIP_PREFIXES.length; i++) {
+          if (prefix >= ZIP_PREFIXES[i][0] && prefix <= ZIP_PREFIXES[i][1]) {
+            return { name: ZIP_PREFIXES[i][2], abbr: ZIP_PREFIXES[i][3], kind: ZIP_PREFIXES[i][4] };
+          }
+        }
+        return null;
+      }
+
+      function sliderToDollars(pos) {
+        var p = Number(pos);
+        if (p <= 50) return Math.round((p / 50) * 10000 / 50) * 50;
+        if (p <= 80) return Math.round((10000 + ((p - 50) / 30) * 20000) / 250) * 250;
+        return Math.round((30000 + ((p - 80) / 20) * 70000) / 1000) * 1000;
+      }
+
+      function dollarsToSlider(amount) {
+        var target = clampMonthly(amount);
+        var best = 0;
+        var bestDiff = Infinity;
+        for (var p = 0; p <= 100; p++) {
+          var diff = Math.abs(sliderToDollars(p) - target);
+          if (diff < bestDiff) {
+            bestDiff = diff;
+            best = p;
+          }
+        }
+        return best;
+      }
+
+      function clampMonthly(v) {
+        var n = Math.round(Number(v));
+        if (!isFinite(n) || n < 0) return 0;
+        return Math.min(MONEY_CAP, n);
+      }
+
+      function clampHome(v) {
+        var n = Math.round(Number(v));
+        if (!isFinite(n) || n < 0) return 0;
+        return Math.min(99999999, n);
+      }
+
+      function fmt(n) {
+        var abs = Math.abs(n).toLocaleString();
+        return n < 0 ? '-$' + abs : '$' + abs;
+      }
+
+      function describeNet(n) {
+        if (n < 0) return { text: fmt(n) + ' shortfall', cls: 'deficit' };
+        if (n > 0) return { text: fmt(n) + ' left over', cls: 'surplus' };
+        return { text: '$0 even', cls: 'even' };
+      }
+
+      function setNet(id, n) {
+        var el = document.getElementById(id);
+        var described = describeNet(n);
+        el.textContent = described.text;
+        el.className = described.cls;
+      }
+
+      function searchUrl(query) {
+        return 'https://www.google.com/search?q=' + encodeURIComponent(query);
+      }
+
+      function hasJurisdiction() {
+        return state.placeKind === 'state' || state.placeKind === 'territory' || state.placeKind === 'district';
+      }
+
+      function updateLinks() {
+        var named = hasJurisdiction();
+        var place = named ? state.stateName : '';
+        var withZip = named ? (state.stateName + ' ' + state.zip).trim() : '';
+        document.getElementById('link-alimony-statute').href = searchUrl((place + ' spousal support alimony statute').trim() + ' site:.gov');
+        document.getElementById('link-cs-statute').href = searchUrl((place + ' child support guidelines statute').trim() + ' site:.gov');
+        document.getElementById('dir-apartments').href = searchUrl(('apartments for rent ' + withZip).trim());
+        document.getElementById('dir-mediators').href = searchUrl(('family divorce mediator ' + withZip).trim());
+        document.getElementById('dir-attorneys').href = searchUrl(('family law divorce attorney ' + withZip).trim());
+        document.getElementById('dir-cdfa').href = searchUrl(('Certified Divorce Financial Analyst CDFA ' + place).trim());
+      }
+
+      function updatePlaceCopy() {
+        var line = document.getElementById('state-display');
+        var note = document.getElementById('link-scope-note');
+        if (state.zip.length < 5) {
+          line.textContent = 'Place: Not entered';
+          note.textContent = state.zip.length === 0
+            ? 'Skip this if it feels safer to leave it blank. A ZIP only names a place for some links. Matching uses a built-in prefix list, so a few special codes can be wrong.'
+            : 'Enter all 5 digits, or clear the box. Links stay general until then.';
+          return;
+        }
+        if (!state.stateName) {
+          line.textContent = 'Place: Not in the built-in list';
+          note.textContent = 'This ZIP is not in the built-in prefix list, so links stay general. You can still complete the money worksheet.';
+          return;
+        }
+        if (state.placeKind === 'military') {
+          line.textContent = 'Mail code: ' + state.stateName + ' (' + state.stateAbbr + ')';
+          note.textContent = 'This is a military mail code, not a state of legal residence. Statute and local-search links stay general and do not include this ZIP. Support and property rules usually follow a home state, which this code does not identify.';
+          return;
+        }
+        if (state.placeKind === 'ambiguous') {
+          line.textContent = 'Place: ZIP prefix 969 covers more than one island jurisdiction';
+          note.textContent = 'Prefix 969 is shared by Guam, the Northern Mariana Islands, Palau, the Federated States of Micronesia, and the Marshall Islands. This exact code is not in the short list, so links stay general.';
+          return;
+        }
+        var label = state.placeKind === 'territory' ? 'Territory' : (state.placeKind === 'district' ? 'District' : 'State');
+        line.textContent = label + ': ' + state.stateName + ' (' + state.stateAbbr + ')';
+        note.textContent = state.stateName + ' will be added to the official-statute searches. The ZIP and ' + state.stateName + ' will be added to the apartment, mediator, and attorney searches. The CDFA search gets the place name only. The therapist directory and the safety hotline do not include your ZIP or state.';
+      }
+
+      function updateCashFlow() {
+        var alimony = clampMonthly(document.getElementById('alimony-amount').value);
+        var childSupport = clampMonthly(document.getElementById('child-support-amount').value);
+        var supportIn = (state.alimonyMode === 'receive' ? alimony : 0) + (state.childSupportMode === 'receive' ? childSupport : 0);
+        var supportOut = (state.alimonyMode === 'pay' ? alimony : 0) + (state.childSupportMode === 'pay' ? childSupport : 0);
+        document.getElementById('base-income').textContent = fmt(money.hhInc);
+        document.getElementById('base-expenses').textContent = fmt(money.hhExp);
+        setNet('base-net', money.hhInc - money.hhExp);
+        document.getElementById('solo-takehome').textContent = fmt(money.soloInc);
+        document.getElementById('solo-support-in').textContent = fmt(supportIn);
+        document.getElementById('solo-living').textContent = fmt(money.soloExp);
+        document.getElementById('solo-support-out').textContent = fmt(supportOut);
+        setNet('solo-net', (money.soloInc + supportIn) - (money.soloExp + supportOut));
+      }
+
+      function updateHomeEquity() {
+        var value = clampHome(document.getElementById('home-value').value);
+        var mortgage = clampHome(document.getElementById('mortgage-balance').value);
+        var tax = clampHome(document.getElementById('property-tax').value);
+        var equity = value - mortgage;
+        var equityEl = document.getElementById('est-equity');
+        if (equity < 0) {
+          equityEl.textContent = fmt(equity) + ' (mortgage is higher than the value)';
+          equityEl.className = 'deficit';
+        } else if (equity > 0) {
+          equityEl.textContent = fmt(equity);
+          equityEl.className = 'surplus';
+        } else {
+          equityEl.textContent = '$0';
+          equityEl.className = 'even';
+        }
+        document.getElementById('monthly-tax').textContent = fmt(Math.round(tax / 12)) + ' a month';
+      }
+
+      function setMoney(key, amount, fromSlider) {
+        var raw = Math.round(Number(amount));
+        var note = '';
+        if (isFinite(raw) && raw > MONEY_CAP) {
+          note = 'Monthly amounts on this page stop at $100,000. The entry was set to $100,000.';
+        }
+        var n = clampMonthly(amount);
+        money[key] = n;
+        var pair = null;
+        for (var i = 0; i < moneyFields.length; i++) {
+          if (moneyFields[i][0] === key) pair = moneyFields[i];
+        }
+        var numberEl = document.getElementById(pair[1]);
+        var sliderEl = document.getElementById(pair[2]);
+        numberEl.value = String(n);
+        if (!fromSlider) sliderEl.value = String(dollarsToSlider(n));
+        sliderEl.setAttribute('aria-valuetext', fmt(n));
+        document.getElementById('amount-note').textContent = note;
+        updateCashFlow();
+      }
+
+      function setMode(which, mode) {
+        var receiveId = which === 'alimony' ? 'alimony-receive-btn' : 'cs-receive-btn';
+        var payId = which === 'alimony' ? 'alimony-pay-btn' : 'cs-pay-btn';
+        if (which === 'alimony') state.alimonyMode = mode;
+        else state.childSupportMode = mode;
+        var receiveOn = mode === 'receive';
+        var receiveBtn = document.getElementById(receiveId);
+        var payBtn = document.getElementById(payId);
+        receiveBtn.classList.toggle('active', receiveOn);
+        payBtn.classList.toggle('active', !receiveOn);
+        receiveBtn.setAttribute('aria-pressed', receiveOn ? 'true' : 'false');
+        payBtn.setAttribute('aria-pressed', receiveOn ? 'false' : 'true');
+        updateCashFlow();
+      }
+
+      function chosenText(id) {
+        var value = document.getElementById(id).value;
+        return value ? value : 'not specified';
+      }
+
+      function buildPrompt() {
+        var hhInc = money.hhInc;
+        var soloInc = money.soloInc;
+        var soloExp = money.soloExp;
+        var share = hhInc > 0 ? Math.round((soloInc / hhInc) * 100) : null;
+        var coverage = soloExp > 0 ? Math.round((soloInc / soloExp) * 100) : null;
+        var place = state.stateName && hasJurisdiction()
+          ? state.stateName + ' (' + state.stateAbbr + ')'
+          : 'not specified';
+        var shareLine = share === null
+          ? 'Share of household take-home: not calculated (household take-home is zero)'
+          : 'Solo take-home is about ' + share + '% of current household take-home';
+        var coverLine = coverage === null
+          ? 'Solo take-home compared with solo living expenses: not calculated (solo expenses are zero)'
+          : 'Solo take-home covers about ' + coverage + '% of solo living expenses before support';
+        var home = clampHome(document.getElementById('home-value').value) > 0
+          ? 'A home value was entered (dollar amount omitted)'
+          : 'No home value entered';
+        return [
+          'Act as an educational divorce-planning organizer. You are not an attorney or fiduciary. Do not ask for or store names, street addresses, phone numbers, email addresses, account numbers, ZIP codes, or exact dollar amounts.',
+          '',
+          'The text below was prepared on a private worksheet that is not connected to you. Exact dollar amounts, the ZIP code, notes, and checklist wording were removed before this prompt was created. The person will paste it themselves.',
+          '',
+          'Context (no exact dollars):',
+          '- Place: ' + place,
+          '- Income role: ' + chosenText('income-position'),
+          '- ' + shareLine,
+          '- ' + coverLine,
+          '- Household description: ' + chosenText('dependent-stage') + '; children under 18: ' + (parseInt(document.getElementById('minor-count').value, 10) || 0) + '; caregiving: ' + chosenText('caregiving-role'),
+          '- Housing: ' + home,
+          '- Support amounts were typed by the person as what-if figures and are not included here.',
+          '',
+          'Please provide:',
+          '1. Financial ideas people in this situation often review for property division, spousal support, and parenting schedules in ' + (state.stateName && hasJurisdiction() ? state.stateName : 'a typical U.S. state') + ', and where to read the official statute.',
+          '2. Common monthly-budget gaps for this income role and caregiving description.',
+          '3. A short list of calm questions to take to a first meeting with a mediator, family lawyer, or certified divorce financial analyst.',
+          '',
+          'Remind the reader that this is general education, not advice for their case.'
+        ].join('\n');
+      }
+
+      function addTask() {
+        var input = document.getElementById('new-task-input');
+        var note = document.getElementById('task-note');
+        var val = input.value.trim();
+        if (!val) {
+          note.textContent = 'Type a step first, then choose Add step.';
+          return;
+        }
+        if (val.length > 180) val = val.slice(0, 180);
+        note.textContent = '';
+        var empty = document.getElementById('custom-task-empty');
+        if (empty) empty.hidden = true;
+        var label = document.createElement('label');
+        label.className = 'check-item';
+        label.setAttribute('data-custom', 'true');
+        var box = document.createElement('input');
+        box.type = 'checkbox';
+        var span = document.createElement('span');
+        span.textContent = val;
+        label.appendChild(box);
+        label.appendChild(document.createTextNode(' '));
+        label.appendChild(span);
+        document.getElementById('custom-task-list').appendChild(label);
+        input.value = '';
+      }
+
+      function clearSession() {
+        document.querySelectorAll('[data-custom="true"]').forEach(function (el) { el.remove(); });
+        var empty = document.getElementById('custom-task-empty');
+        if (empty) empty.hidden = false;
+        document.querySelectorAll('input').forEach(function (inp) {
+          if (inp.type === 'checkbox' || inp.type === 'radio') inp.checked = false;
+          else if (inp.type === 'range') {
+            inp.value = '0';
+            inp.setAttribute('aria-valuetext', '$0');
+          } else if (inp.id === 'minor-count' || inp.id.indexOf('money-') === 0 || inp.id === 'alimony-amount' || inp.id === 'child-support-amount' || inp.id === 'home-value' || inp.id === 'mortgage-balance' || inp.id === 'property-tax') {
+            inp.value = '0';
+          } else {
+            inp.value = '';
+          }
+        });
+        document.querySelectorAll('.check-item').forEach(function (el) { el.classList.remove('done'); });
+        document.querySelectorAll('textarea').forEach(function (ta) { ta.value = ''; });
+        document.querySelectorAll('select').forEach(function (sel) { sel.value = ''; });
+        state.zip = '';
+        state.stateName = '';
+        state.stateAbbr = '';
+        state.placeKind = '';
+        money.hhInc = 0;
+        money.hhExp = 0;
+        money.soloInc = 0;
+        money.soloExp = 0;
+        setMode('alimony', 'receive');
+        setMode('childSupport', 'receive');
+        document.getElementById('ai-prompt-output').textContent = PROMPT_PLACEHOLDER;
+        document.getElementById('ai-prompt-output').dataset.ready = 'false';
+        document.getElementById('copy-status').textContent = '';
+        document.getElementById('amount-note').textContent = '';
+        document.getElementById('task-note').textContent = '';
+        updatePlaceCopy();
+        updateLinks();
+        updateCashFlow();
+        updateHomeEquity();
+      }
+
+      function executeQuickExit() {
+        clearSession();
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText('');
+        } catch (err) { /* clipboard may be blocked; navigation still proceeds */ }
+        window.location.replace('https://www.weather.com');
+      }
+
+      document.getElementById('zip-input').addEventListener('input', function (e) {
+        var clean = e.target.value.replace(/\D/g, '').slice(0, 5);
+        e.target.value = clean;
+        state.zip = clean;
+        var match = resolveZip(clean);
+        if (match) {
+          state.stateName = match.name;
+          state.stateAbbr = match.abbr;
+          state.placeKind = match.kind;
+        } else {
+          state.stateName = '';
+          state.stateAbbr = '';
+          state.placeKind = '';
+        }
+        updatePlaceCopy();
+        updateLinks();
+      });
+
+      moneyFields.forEach(function (pair) {
+        var key = pair[0];
+        document.getElementById(pair[1]).addEventListener('input', function (e) {
+          setMoney(key, e.target.value, false);
+        });
+        document.getElementById(pair[2]).addEventListener('input', function (e) {
+          setMoney(key, sliderToDollars(e.target.value), true);
+        });
+      });
+
+      ['alimony-amount', 'child-support-amount'].forEach(function (id) {
+        document.getElementById(id).addEventListener('input', function (e) {
+          var raw = Math.round(Number(e.target.value));
+          if (isFinite(raw) && raw > MONEY_CAP) {
+            e.target.value = String(MONEY_CAP);
+            document.getElementById('amount-note').textContent = 'Monthly amounts on this page stop at $100,000. The entry was set to $100,000.';
+          } else {
+            document.getElementById('amount-note').textContent = '';
+            if (isFinite(raw) && raw < 0) e.target.value = '0';
+          }
+          updateCashFlow();
+        });
+      });
+
+      ['home-value', 'mortgage-balance', 'property-tax'].forEach(function (id) {
+        document.getElementById(id).addEventListener('input', updateHomeEquity);
+      });
+
+      document.getElementById('alimony-receive-btn').addEventListener('click', function () { setMode('alimony', 'receive'); });
+      document.getElementById('alimony-pay-btn').addEventListener('click', function () { setMode('alimony', 'pay'); });
+      document.getElementById('cs-receive-btn').addEventListener('click', function () { setMode('childSupport', 'receive'); });
+      document.getElementById('cs-pay-btn').addEventListener('click', function () { setMode('childSupport', 'pay'); });
+
+      document.getElementById('generate-prompt-btn').addEventListener('click', function () {
+        var output = document.getElementById('ai-prompt-output');
+        output.textContent = buildPrompt();
+        output.dataset.ready = 'true';
+        document.getElementById('copy-status').textContent = '';
+        output.focus();
+      });
+
+      document.getElementById('copy-prompt-btn').addEventListener('click', function () {
+        var output = document.getElementById('ai-prompt-output');
+        var status = document.getElementById('copy-status');
+        if (output.dataset.ready !== 'true') {
+          status.textContent = 'Generate a prompt first. Nothing was copied.';
+          return;
+        }
+        if (!navigator.clipboard || !navigator.clipboard.writeText) {
+          status.textContent = 'This browser did not allow clipboard access. Select the prompt and copy it yourself.';
+          return;
+        }
+        navigator.clipboard.writeText(output.textContent).then(function () {
+          status.textContent = 'Copied. Another site sees it only if you paste it there.';
+        }).catch(function () {
+          status.textContent = 'The browser blocked clipboard access. Select the prompt and copy it yourself.';
+        });
+      });
+
+      document.getElementById('checklist-container').addEventListener('change', function (e) {
+        if (e.target.type === 'checkbox') {
+          e.target.closest('.check-item').classList.toggle('done', e.target.checked);
+        }
+      });
+
+      document.getElementById('add-task-btn').addEventListener('click', addTask);
+      document.getElementById('new-task-input').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          addTask();
+        }
+      });
+
+      document.getElementById('print-btn').addEventListener('click', function () { window.print(); });
+      document.getElementById('quick-exit-btn').addEventListener('click', executeQuickExit);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          executeQuickExit();
+        }
+      });
+
+      updateLinks();
+      updateCashFlow();
+      updateHomeEquity();
+    })();
+  </script>
+</body>
+</html>
