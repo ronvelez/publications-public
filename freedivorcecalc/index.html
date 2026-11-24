@@ -393,6 +393,47 @@
       margin: 0.5rem 0 0;
     }
 
+    .health-read {
+      background: var(--surface-alt);
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+      margin: 0 0 1rem;
+    }
+
+    .health-read p { margin: 0 0 0.65rem; }
+    .health-read p:last-child { margin-bottom: 0; }
+
+    .next-paths {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .next-path {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      background: #fff;
+    }
+
+    .next-path.is-chosen {
+      border-color: var(--primary);
+      background: var(--surface-note);
+      box-shadow: inset 3px 0 0 var(--primary);
+    }
+
+    .next-path h3 { margin: 0 0 0.4rem; font-size: 1.05rem; }
+    .next-path p { margin: 0 0 0.65rem; }
+
+    .next-marked {
+      margin: 0 0 0.65rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .next-extra { margin: 0.35rem 0 0; padding-left: 1.25rem; }
+    .next-extra li { margin: 0.4rem 0; }
+
     .print-only { display: none; }
 
     @media (min-width: 700px) {
@@ -424,7 +465,8 @@
       .btn-quick-exit,
       .button-row .btn,
       .link-grid .btn,
-      .add-task-row .btn { width: 100%; }
+      .add-task-row .btn,
+      .next-path .btn { width: 100%; }
       .add-task-row,
       .button-row { flex-direction: column; align-items: stretch; }
       .toggle-group { max-width: none; }
@@ -490,32 +532,35 @@
         <p>States write different rules. A judge, a mediator, or a written agreement decides the real outcome. This is only the shape of the path, so the blank space has some edges.</p>
         <ol>
           <li><strong>You are still deciding, or you have decided and need a first picture.</strong> This page is for that stage. You can learn before you tell anyone.</li>
-          <li><strong>People usually gather income, bills, debts, accounts, and papers about the home.</strong> Section 6 is a starter list. One item today is a real start.</li>
-          <li><strong>Child support and spousal support follow your state’s rules.</strong> Some states publish a formula. Many leave spousal support to a judge. Section 2 links to an outside child-support calculator and a plain-language spousal-support guide. You can type a monthly figure back here and see it beside rent, food, and other bills. The boxes on this page do not calculate the guideline.</li>
-          <li><strong>The house, retirement, and debts usually come later, in the property conversation.</strong> Section 3 only subtracts a mortgage from a home value. It does not divide the house or say who should stay.</li>
-          <li><strong>Many people then talk with a family mediator, a family lawyer, or a certified divorce financial analyst.</strong> Parenting time, support, and housing get worked out in that process. Section 4 can open those searches when you choose. This page does not contact them.</li>
+          <li><strong>People usually gather income, bills, debts, accounts, and papers about the home.</strong> Section 8 is a starter list. One item today is a real start.</li>
+          <li><strong>Child support and spousal support follow your state’s rules.</strong> Some states publish a formula. Many leave spousal support to a judge. Section 3 links to an outside child-support calculator and a plain-language spousal-support guide. You can type a monthly figure back here and see it beside rent, food, and other bills. The boxes on this page do not calculate the guideline.</li>
+          <li><strong>The house, retirement, and debts usually come later, in the property conversation.</strong> Section 4 only subtracts a mortgage from a home value. Section 5 is a round-number list of other property, one total for shared debts other than that mortgage, and a business if you own one together. Neither section divides property or says who should keep it.</li>
+          <li><strong>Many people then talk with a family mediator, a family lawyer, or a certified divorce financial analyst.</strong> Parenting time, support, and housing get worked out in that process. Section 2 lists common custody descriptions if you want to name one. It does not choose one for you. Section 6 can open those searches when you choose. This page does not contact them.</li>
         </ol>
         <h3>How to use the page when you feel lost</h3>
         <ol>
           <li>If you want, enter a 5-digit ZIP so some later links can name your state. Skip it if that feels safer. Do not type a name, street address, phone, email, or account number.</li>
-          <li>In section 2, sketch money as the household has it now, then a guess of money on your own. Leave a box at zero when you do not know.</li>
+          <li>If children are part of this, section 2 lists common custody descriptions. Skip it if that does not apply. Do not type a child’s name, school, or address.</li>
+          <li>In section 3, sketch money as the household has it now, then a guess of money on your own. Leave a box at zero when you do not know.</li>
+          <li>Section 5 is optional. It is for round values of vehicles, accounts, retirement, and other property, one total for shared debts other than the mortgage, and a business you own together. Skip any line you do not know. Do not type an account number, a card number, or a business name.</li>
           <li>Read the two monthly results. If you want a paper copy, print before you leave. Esc or Quick Exit erases this visit and opens a weather page.</li>
-          <li>Section 5 is optional. It can write text you paste into a chatbot you already use. This website is not connected to any chatbot. Read that section before you copy anything.</li>
+          <li>Section 9, at the end, reads the solo picture in plain language. If a ZIP matched a state, it adds a statewide price note. It also lists a few next steps, and some decisions people often still talk through. You can read it while the numbers are still zero.</li>
+          <li>Section 7 is optional. It can write text you paste into a chatbot you already use. This website is not connected to any chatbot. Read that section before you copy anything.</li>
         </ol>
-        <p>If you are in danger, go to section 4. The National Domestic Violence Hotline there is free, confidential, and answered all day and night. Quick Exit stays at the top of the screen.</p>
+        <p>If you are in danger, go to section 6. The National Domestic Violence Hotline there is free, confidential, and answered all day and night. Quick Exit stays at the top of the screen.</p>
       </div>
     </header>
 
     <section class="card" aria-labelledby="sec-context">
       <h2 id="sec-context">1. Where you live, and who depends on you</h2>
-      <p class="section-sub">A ZIP is optional. It only helps some links in section 4 name a place, and it is not stored. If the place name looks wrong, ignore those links and keep going. The questions beside it describe the household in your own words. The closest fit is enough. These answers do not change the dollar totals.</p>
+      <p class="section-sub">A ZIP is optional. It helps some links in section 6 name a place, and section 9 uses a matched state for a statewide price note. It is not stored. If the place name looks wrong, ignore those links and the price note. The questions beside it describe the household in your own words. The closest fit is enough. These answers do not change the dollar totals.</p>
 
       <div class="grid-3">
         <div class="field">
           <label for="zip-input">5-digit ZIP code (optional)</label>
           <input type="text" id="zip-input" maxlength="5" inputmode="numeric" pattern="[0-9]{5}" autocomplete="off" placeholder="5 digits, or leave blank" />
           <p class="state-line" id="state-display" aria-hidden="true">Place: Not entered</p>
-          <p class="field-help no-print" id="link-scope-note" aria-live="polite">Skip this if it feels safer to leave it blank. A ZIP only names a place for some links. Matching uses a built-in prefix list, so a few special codes can be wrong.</p>
+          <p class="field-help no-print" id="link-scope-note" aria-live="polite">Skip this if it feels safer to leave it blank. A ZIP names a place for some links in section 6, and section 9 uses a matched state for a statewide price note. Matching uses a built-in prefix list, so a few special codes can be wrong.</p>
         </div>
         <div class="field">
           <label for="income-position">Your income relative to the household</label>
@@ -559,8 +604,30 @@
       </div>
     </section>
 
+    <section class="card" aria-labelledby="sec-custody">
+      <h2 id="sec-custody">2. Custody, if this applies</h2>
+      <p class="section-sub">Skip this if there are no children, or if parenting feels like too much today. States use different words. Some say custody. Others say parenting time and decision-making. Decision-making is who chooses school, health care, and other major matters. Parenting time is where the children live and when they are with each parent. The closest description is enough. This page does not write a parenting plan, and it does not say what a judge would order. Do not type a child’s name, school, or address.</p>
+      <p class="print-only">A description chosen for personal planning. It is not a parenting plan or a court order.</p>
+      <div class="field">
+        <label for="custody-arrangement">Closest description</label>
+        <p class="field-help no-print" id="help-custody">You can leave this blank. Not applicable is a complete answer. If you are afraid for yourself or for a child, talk with an advocate before you rely on this note. The hotline in section 6 is left off a printed copy.</p>
+        <select id="custody-arrangement" aria-describedby="help-custody custody-note">
+          <option value="" selected>Choose the closest fit</option>
+          <option value="not applicable">Not applicable</option>
+          <option value="shared custody">Shared custody</option>
+          <option value="shared decisions, one primary home">Shared decisions, with one primary home</option>
+          <option value="sole custody">Sole custody</option>
+          <option value="supervised parenting time only">Supervised parenting time only</option>
+          <option value="parenting time with no overnights">Parenting time with no overnights</option>
+          <option value="different children live primarily with different parents">Different children live primarily with different parents</option>
+          <option value="not ready to name an arrangement">Not ready to name an arrangement</option>
+        </select>
+      </div>
+      <p class="field-help" id="custody-note" aria-live="polite">Choose a description if you want one. You can also leave this blank.</p>
+    </section>
+
     <section class="card" aria-labelledby="sec-cashflow">
-      <h2 id="sec-cashflow">2. Money now, and a sketch of money on your own</h2>
+      <h2 id="sec-cashflow">3. Money now, and a sketch of money on your own</h2>
       <p class="section-sub">Start with life as it is today, then guess one household after a separation. If you do not know a number, use a round figure or leave zero. You can change it. The slider is only for exploring: under $10,000 it moves by about $200, and above $30,000 it jumps by about $3,000 to $4,000. Typing keeps the exact dollar, up to $100,000 a month. Moving the slider afterward replaces that amount with the nearest slider step.</p>
       <p class="print-only">Figures are amounts entered for personal planning. They are not a court calculation. Support typed below is included only in the solo column.</p>
       <p class="note-line no-print" id="amount-note" aria-live="polite"></p>
@@ -659,9 +726,9 @@
     </section>
 
     <section class="card" aria-labelledby="sec-home">
-      <h2 id="sec-home">3. The house, if you want a rough picture</h2>
+      <h2 id="sec-home">4. The house, if you want a rough picture</h2>
       <p class="section-sub">Skip this if housing feels like too much today. If you stay, use round numbers. Leave out the street address and any loan number. The result is the home value you type minus the mortgage you type. Selling costs, repairs, taxes, and who keeps the house are decided later, with a professional and your state’s property rules.</p>
-      <p class="print-only">Gross equity is approximate value minus remaining mortgage, before selling costs or a division decision. The monthly tax line is not included in section 2 expenses.</p>
+      <p class="print-only">Gross equity is approximate value minus remaining mortgage, before selling costs or a division decision. The monthly tax line is not included in section 3 expenses.</p>
 
       <div class="grid-3">
         <div class="field">
@@ -677,19 +744,143 @@
         </div>
         <div class="field">
           <label for="property-tax">Annual property tax ($ per year)</label>
-          <p class="field-help no-print" id="help-tax">The monthly line divides this by 12 and rounds to the nearest dollar. That monthly tax is not added to the living expenses in section 2. If those expenses already include property tax, do not count it a second time.</p>
+          <p class="field-help no-print" id="help-tax">The monthly line divides this by 12 and rounds to the nearest dollar. That monthly tax is not added to the living expenses in section 3. If those expenses already include property tax, do not count it a second time.</p>
           <input type="number" id="property-tax" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-tax" />
         </div>
       </div>
 
       <div class="comparison-col" style="margin-top:1rem;" aria-live="polite">
         <div class="metric-row"><span>Estimated gross equity</span> <strong id="est-equity" class="even">$0</strong></div>
-        <div class="metric-row"><span>Property tax per month (not included in section 2)</span> <strong id="monthly-tax">$0 a month</strong></div>
+        <div class="metric-row"><span>Property tax per month (not included in section 3)</span> <strong id="monthly-tax">$0 a month</strong></div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="sec-assets">
+      <h2 id="sec-assets">5. Other property, and a business if you own one together</h2>
+      <p class="section-sub">Skip this if a list of property feels like too much today. Use a round total for each line, and leave a line at zero when you do not know. Do not type an account number, a VIN, a policy number, a card number, a street address, or a business name. Property amounts are not subtracted from each other. Shared debts have their own total and are not taken out of the property lines. Nothing here is divided between two people.</p>
+      <p class="print-only">Approximate values entered for personal planning. Shared debts are listed separately and are not subtracted. The mortgage stays in section 4. The house is shown again here only as equity added to the property list.</p>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="asset-vehicles">Cars, boats, motorcycles, and other vehicles ($)</label>
+          <p class="field-help no-print" id="help-asset-vehicles">A round total for the vehicles, not a value for each one.</p>
+          <input type="number" id="asset-vehicles" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-asset-vehicles" />
+        </div>
+        <div class="field">
+          <label for="asset-cash">Cash and bank accounts ($)</label>
+          <p class="field-help no-print" id="help-asset-cash">Checking and savings, as a rough total. Not an account number.</p>
+          <input type="number" id="asset-cash" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-asset-cash" />
+        </div>
+        <div class="field">
+          <label for="asset-stocks">Stocks, bonds, and non-retirement investments ($)</label>
+          <p class="field-help no-print" id="help-asset-stocks">Brokerage accounts that are not a retirement plan. A round total is enough.</p>
+          <input type="number" id="asset-stocks" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-asset-stocks" />
+        </div>
+        <div class="field">
+          <label for="asset-retirement">Retirement accounts ($)</label>
+          <p class="field-help no-print" id="help-asset-retirement">401(k), 403(b), IRA, and pension balances, as one rough total. Who keeps them is decided later.</p>
+          <input type="number" id="asset-retirement" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-asset-retirement" />
+        </div>
+        <div class="field">
+          <label for="asset-realestate">Other real estate ($)</label>
+          <p class="field-help no-print" id="help-asset-realestate">A rental, land, or a second home. Leave out the house you already entered in section 4, and leave out the street address.</p>
+          <input type="number" id="asset-realestate" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-asset-realestate" />
+        </div>
+        <div class="field">
+          <label for="asset-insurance">Cash value of life insurance ($)</label>
+          <p class="field-help no-print" id="help-asset-insurance">Only the cash value, if the policy has one. Not the death benefit, and not a policy number.</p>
+          <input type="number" id="asset-insurance" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-asset-insurance" />
+        </div>
+        <div class="field">
+          <label for="asset-personal">Valuable personal property ($)</label>
+          <p class="field-help no-print" id="help-asset-personal">Jewelry, art, or collectibles, if you want them in the sketch. Everyday household goods can stay at zero.</p>
+          <input type="number" id="asset-personal" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-asset-personal" />
+        </div>
+        <div class="field">
+          <label for="asset-crypto">Cryptocurrency and other digital assets ($)</label>
+          <p class="field-help no-print" id="help-asset-crypto">A round total. Do not type a wallet address or an account login.</p>
+          <input type="number" id="asset-crypto" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-asset-crypto" />
+        </div>
+        <div class="field">
+          <label for="asset-other">Anything else you want in this sketch ($)</label>
+          <p class="field-help no-print" id="help-asset-other">Another asset that does not fit the lines above. A round total is enough.</p>
+          <input type="number" id="asset-other" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-asset-other" />
+        </div>
+      </div>
+
+      <div class="comparison-col" id="asset-summary" style="margin-top:1rem;" aria-live="polite">
+        <div class="metric-row"><span>Approximate total of these values</span> <strong id="asset-total">$0</strong></div>
+        <div class="metric-row"><span>Home equity from section 4</span> <strong id="asset-home-equity">$0</strong></div>
+        <div class="metric-total"><span>These values plus home equity, before debts</span> <strong id="asset-combined" class="even">$0</strong></div>
+        <div class="metric-row"><span>Shared debts, other than the mortgage</span> <strong id="debt-shared-total">$0</strong></div>
+        <p class="field-help" id="asset-total-note">The debt total stays beside these values. It is not subtracted, and the mortgage from section 4 is not included in it. This is not a net-worth statement and not a court division.</p>
+      </div>
+
+      <h3 class="group-title">Shared debts, other than the mortgage</h3>
+      <p class="section-sub">Use one rough total for balances you share. A car loan, a credit card, a personal loan, a medical bill, or a health-insurance invoice can belong here when you both owe it. Student loans and back taxes can too, if they are shared. Leave out the mortgage you typed in section 4. Use zero if you do not know. Do not type an account number, a card number, or a creditor’s name. This total does not decide who must pay.</p>
+      <div class="field">
+        <label for="debt-shared">Approximate total of shared debts ($)</label>
+        <p class="field-help no-print" id="help-debt-shared">Add the shared balances into one number. The house mortgage stays in section 4, so do not include it again.</p>
+        <input type="number" id="debt-shared" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-debt-shared" />
+      </div>
+
+      <h3 class="group-title">A business you own together</h3>
+      <p class="section-sub">A shared business often needs its own decisions later: who keeps it, whether it is sold, and how pay works. You can skip this. If you stay, use a year of round numbers. Do not type the business name, an address, or a tax number.</p>
+      <div class="field">
+        <label for="business-together">Is there a business you own together?</label>
+        <p class="field-help no-print" id="help-business-together">The closest fit is enough. Yes and Not sure open a small yearly sketch. No leaves it closed.</p>
+        <select id="business-together" aria-describedby="help-business-together">
+          <option value="" selected>Choose the closest fit</option>
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+          <option value="unsure">Not sure</option>
+        </select>
+      </div>
+
+      <div id="business-detail" hidden>
+        <p class="field-help" id="business-later-note">Owning a business together is a later conversation with an accountant or a lawyer. This page does not decide who keeps it.</p>
+        <div class="grid-2">
+          <div class="field">
+            <label for="business-revenue">Approximate annual revenue ($)</label>
+            <p class="field-help no-print" id="help-business-revenue">Money the business brought in over a recent year. A round figure is enough.</p>
+            <input type="number" id="business-revenue" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-business-revenue" />
+          </div>
+          <div class="field">
+            <label for="business-expenses">Approximate annual expenses ($)</label>
+            <p class="field-help no-print" id="help-business-expenses">The bills you would put on a yearly expense list. The next question asks whether pay to you or your spouse is already inside this number.</p>
+            <input type="number" id="business-expenses" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-business-expenses" />
+          </div>
+          <div class="field">
+            <label for="business-owner-pay">Approximate annual pay to you and your spouse ($)</label>
+            <p class="field-help no-print" id="help-business-owner-pay">Optional. Use zero if you do not know the amount. This is pay from the business, not household wages from an outside job.</p>
+            <input type="number" id="business-owner-pay" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-business-owner-pay" />
+          </div>
+          <div class="field">
+            <label for="asset-business">Approximate value of the business ($)</label>
+            <p class="field-help no-print" id="help-asset-business">A rough sale price, if you have one. This is not the same as a year of profit. Leave zero if you do not know. It is included in the property total above.</p>
+            <input type="number" id="asset-business" min="0" step="1" value="0" inputmode="numeric" autocomplete="off" aria-describedby="help-asset-business" />
+          </div>
+        </div>
+        <div class="field" style="margin-top:1rem;">
+          <label for="business-pay">Is pay to you or your spouse included in the expenses above?</label>
+          <p class="field-help no-print" id="help-business-pay">A paycheck that runs through payroll is usually part of expenses. An owner’s draw or distribution is usually not an expense. It is money taken out of profit. If you are not sure which one the books use, choose Not sure.</p>
+          <select id="business-pay" aria-describedby="help-business-pay">
+            <option value="" selected>Choose the closest fit</option>
+            <option value="included">Yes. Paychecks are included in the expenses.</option>
+            <option value="draws">No. Pay is a draw or distribution, and it is not in the expenses.</option>
+            <option value="none">No salary or draw is taken.</option>
+            <option value="unsure">Not sure</option>
+          </select>
+        </div>
+        <div class="comparison-col" id="business-summary" style="margin-top:1rem;" aria-live="polite">
+          <div class="metric-row"><span>Approximate annual profit (revenue minus expenses)</span> <strong id="business-profit" class="even">$0</strong></div>
+          <p class="field-help" id="business-pay-note">Profit here is the revenue you typed minus the expenses you typed. It is a yearly result, not the value of the business, and it is not added to the property total.</p>
+        </div>
       </div>
     </section>
 
     <section class="card no-print" aria-labelledby="sec-resources">
-      <h2 id="sec-resources">4. People and places that can help next</h2>
+      <h2 id="sec-resources">6. People and places that can help next</h2>
       <p class="section-sub">It is okay to ask for help, and it is best not to plan this alone. Family and friends can sit with you, listen, and help you think. Professional services can explain the law, the money, and a safety plan. You do not have to open any of these buttons today. When you do, each button leaves this page and opens another website. This planner does not contact those sites and does not control what they ask you. Apartment, mediator, and attorney searches include your ZIP and place name when a state, territory, or the District of Columbia was recognized. The financial-specialist search includes the state or territory name only. The therapist directory and the safety hotline do not include your ZIP or state. This whole section is left off the printed worksheet.</p>
 
       <h3 class="group-title">If school or returning to work is part of the next chapter</h3>
@@ -724,14 +915,14 @@
     </section>
 
     <section class="card no-print" aria-labelledby="sec-ai">
-      <h2 id="sec-ai">5. Optional text for a chatbot you already use</h2>
+      <h2 id="sec-ai">7. Optional text for a chatbot you already use</h2>
       <p class="section-sub">You can skip this. Many people never use it. It is here only if you want to take the picture on this screen and ask a chatbot you already use for general feedback. The text it writes is a prompt you copy yourself.</p>
       <div class="directions">
         <h3>How this convenience option works</h3>
         <ol>
           <li>Choose “Generate the prompt.” This page writes a block of text from the answers currently on the screen. You can skip this section entirely.</li>
           <li>Before that text is written, this page removes personally identifiable information. Exact dollar amounts, your ZIP code, your notes, and your checklist wording are left out. This page has no fields for a name, street address, phone number, email address, or account number, so those cannot be included.</li>
-          <li>The text can still include a state or territory name, the profile choices you selected, the number of children under 18 you entered, and rounded percentages instead of dollars. Read the whole text before you copy it.</li>
+          <li>The text can still include a state or territory name, the profile choices you selected, the number of children under 18 you entered, a custody description if you chose one, whether a shared business was indicated, and rounded percentages instead of dollars. Exact asset values and business dollar amounts are left out. A child’s name is never included, because this page does not ask for one. Read the whole text before you copy it.</li>
           <li>Copy the text and paste it into the chatbot you selected. This website does not send the text anywhere.</li>
         </ol>
       </div>
@@ -748,8 +939,8 @@
     </section>
 
     <section class="card" aria-labelledby="sec-checklist">
-      <h2 id="sec-checklist">6. A first list, so you are not starting from a blank page</h2>
-      <p class="section-sub no-print">You do not have to finish this today. Finding one paper, or writing one question, is a real start. This is a starter list for gathering records and thinking about privacy. A court may later ask for more. Checked items, added steps, and notes last only until you close the tab or use Quick Exit. Print first if you need a paper copy. The printout includes what you typed, including a ZIP and these notes, so keep that paper somewhere private. The hotline in section 4 is left off the printout.</p>
+      <h2 id="sec-checklist">8. A first list, so you are not starting from a blank page</h2>
+      <p class="section-sub no-print">You do not have to finish this today. Finding one paper, or writing one question, is a real start. This is a starter list for gathering records and thinking about privacy. A court may later ask for more. Checked items, added steps, and notes last only until you close the tab or use Quick Exit. Print first if you need a paper copy. The printout includes what you typed, including a ZIP and these notes, so keep that paper somewhere private. The hotline in section 6 is left off the printout.</p>
       <p class="print-only">Starter list and notes from this visit. Not a complete legal checklist.</p>
 
       <div id="checklist-container">
@@ -764,11 +955,13 @@
           <label class="check-item"><input type="checkbox" /> <span>List checking, savings, brokerage, retirement, and 529 accounts without writing full account numbers here</span></label>
           <label class="check-item"><input type="checkbox" /> <span>Pull a free credit report at AnnualCreditReport.com to see open credit lines</span></label>
           <label class="check-item"><input type="checkbox" /> <span>List recurring bills, subscriptions, and automatic payments</span></label>
+          <label class="check-item"><input type="checkbox" /> <span>Write round values for vehicles, accounts, retirement, other property, shared debts other than the mortgage, and a business in section 5, without account numbers or a business name</span></label>
         </div>
         <div class="checklist-category">
           <h3>Privacy and next steps</h3>
           <label class="check-item"><input type="checkbox" /> <span>Review email, shared photo albums, and device location sharing</span></label>
           <label class="check-item"><input type="checkbox" /> <span>If you need one, set up a separate email address and a private mailing address</span></label>
+          <label class="check-item"><input type="checkbox" /> <span>If it applies, mark the closest custody description in section 2, without children’s names, schools, or addresses</span></label>
         </div>
         <div class="checklist-category" id="custom-task-list">
           <h3>Steps you add</h3>
@@ -792,6 +985,64 @@
         <button type="button" class="btn btn-secondary" id="print-btn">Print or save a PDF worksheet</button>
       </div>
     </section>
+
+    <section class="card" aria-labelledby="sec-next">
+      <h2 id="sec-next">9. A plain reading, and a few next steps</h2>
+      <p class="section-sub">This reads the solo numbers from section 3 in ordinary language. If a ZIP matched a state, it adds a statewide price note from 2023. It is not a score, a diagnosis, or advice to file or to stay. A shortfall does not mean you cannot leave. Money left over does not mean you should. If a sentence does not fit, skip it.</p>
+      <div class="health-read" id="solo-health-read" aria-live="polite">
+        <p id="solo-health-summary">Section 3 does not have a solo income, a solo expense, or a support amount yet. There is no solo money picture to read. That is all right. You can use the paths below with a blank worksheet.</p>
+        <p id="solo-region-note">No ZIP is entered, so this part stays with your numbers only. You can leave it blank. If you add a ZIP and it matches a state, this section adds a 2023 statewide price note from the U.S. Bureau of Economic Analysis. It still will not know your city or your rent.</p>
+      </div>
+
+      <h3 class="group-title">Three places people often start</h3>
+      <p class="section-sub">Read all three. These can be major, life-changing decisions, and it is all right to feel scared or unsure. If you feel overwhelmed and the money is also unclear, start with the first path. A clearer mind makes the money conversation easier. You can use more than one path, in any order. Choosing a path only marks it on this screen. Nothing is stored, and this page does not contact anyone.</p>
+
+      <div class="next-paths" role="group" aria-label="Next step that feels closest right now">
+        <article class="next-path" id="path-emotions">
+          <h3 id="path-emotions-title">If you feel very emotional or overwhelmed</h3>
+          <p class="next-marked" hidden>Marked on this visit as the closest fit.</p>
+          <p>A fitting next step is to speak with someone about the decision before you try to settle it. That person can be a trusted friend, a family member, a therapist, a counselor, or another mental health worker. You do not need a finished budget, a lawyer, or a firm plan before that conversation. The goal right now is a clearer mind, not a filing decision.</p>
+          <p class="no-print">If you want a person to listen today and you do not have someone safe to call, you can call or text 988, the Suicide and Crisis Lifeline. It is free, confidential, and answered all day and night. If you are afraid you are not safe at home, go to section 6 first. The National Domestic Violence Hotline there is 1-800-799-7233, or text START to 88788. This page does not contact either line. These numbers are left off the printed worksheet.</p>
+          <button type="button" class="btn btn-secondary" id="path-emotions-btn" aria-pressed="false" aria-labelledby="path-emotions-title path-emotions-btn">This feels closest right now</button>
+        </article>
+        <article class="next-path" id="path-ready">
+          <h3 id="path-ready-title">If your emotions feel steady and you are ready for a next step</h3>
+          <p class="next-marked" hidden>Marked on this visit as the closest fit.</p>
+          <p>A fitting next step is to talk with a trusted friend, a family member, or an attorney. Bring one or two questions rather than a whole plan. A mediator is another option when you want help negotiating and you are safe doing that. Section 6 can open a family-lawyer or mediator search when you choose. You do not have to hire anyone today. Many first meetings start with what it costs and what to bring.</p>
+          <button type="button" class="btn btn-secondary" id="path-ready-btn" aria-pressed="false" aria-labelledby="path-ready-title path-ready-btn">This feels closest right now</button>
+        </article>
+        <article class="next-path" id="path-money">
+          <h3 id="path-money-title">If you do not yet have a firm grasp of the money</h3>
+          <p class="next-marked" hidden>Marked on this visit as the closest fit.</p>
+          <p>A fitting next step is to go over the picture with a trusted friend, a family member, an accountant, or an attorney. A certified divorce financial analyst works on the money side of a divorce. Section 6 can open that search. Not understanding every bill is a reason to ask for help. You can show round numbers, or the printed worksheet, and leave out anything you do not want to share.</p>
+          <button type="button" class="btn btn-secondary" id="path-money-btn" aria-pressed="false" aria-labelledby="path-money-title path-money-btn">This feels closest right now</button>
+        </article>
+      </div>
+      <p class="note-line" id="next-step-focus" aria-live="polite"></p>
+
+      <h3 class="group-title" id="ahead-title">Decisions people often still talk through</h3>
+      <p class="section-sub">These are notes for later conversations. Skip any line that does not fit. You do not have to settle them today. This page does not choose an answer.</p>
+      <ul class="next-extra" id="ahead-notes">
+        <li>The house is often kept by one person, with a buyout of the other share, or sold so the proceeds can be divided. Who stays in the home while that is still open is its own question, and so is who pays the joint bills during that wait.</li>
+        <li>Health coverage usually needs a plan: which parent’s insurance covers the children, and how a spouse who has been on the other person’s plan will be covered. When you know a new premium, it belongs in the solo expenses in section 3.</li>
+        <li>Some people work out the terms with a mediator. Some each hire a lawyer. Some leave open questions to a judge. Section 6 can open a mediator or lawyer search when you want one.</li>
+        <li>The tax year of a divorce often raises two questions: whether the last return is filed together or separately, and who claims the children. An accountant or another tax professional is the person for that year. This page does not prepare a return.</li>
+        <li>Retirement accounts are often divided by a special court order. Taking money out early can bring taxes and a penalty. A gift, an inheritance, or something owned before the marriage is sometimes treated as one person’s property.</li>
+        <li>Pets, college costs for older children, and who keeps a car for work or for parenting come up often. Name them when they apply.</li>
+        <li>Joint credit cards and automatic payments can keep charging one person. The section 8 list includes a free credit report, which shows the open lines. Who may use those accounts during the wait is worth deciding on purpose.</li>
+        <li>Life-insurance beneficiaries, a will, and a power of attorney often still name a spouse. A lawyer can say when those may be changed. Changing them too soon can conflict with a later order.</li>
+        <li>A long marriage, a pension, or military retirement is a reason to ask a professional about benefits this page does not estimate.</li>
+      </ul>
+
+      <h3 class="group-title">A few more things that often help</h3>
+      <ul class="next-extra">
+        <li>You do not have to decide, file, or tell anyone today. Looking at this page does not start a case.</li>
+        <li>One small step is enough: write one question in the notes, gather one paper in section 8, or tell one person who feels safe.</li>
+        <li>If you are afraid, speak with an advocate before you tell the other person, and before you leave a printout where someone else can find it.</li>
+        <li>A printed copy includes what you typed, including a ZIP and your notes. Keep that paper somewhere private.</li>
+      </ul>
+      <ul class="next-extra" id="extra-next-dynamic" hidden></ul>
+    </section>
   </main>
 
   <!--
@@ -806,7 +1057,7 @@
   -->
   <footer class="card container" style="margin-top:0;">
     <h2>About this worksheet</h2>
-    <p class="lead">Next Chapter is a free public-service worksheet, version 1.3.1, for women and men who are thinking about divorce and need a private place to begin. It is okay to ask for help. Family, friends, and professional services are available, and it is best not to plan this alone. The page is for education and personal organization. Rough numbers are enough. It does not calculate support, divide property, or recommend whether to leave or file. Read your state or territory’s official sources and talk with a qualified professional before you rely on a figure.</p>
+    <p class="lead">Next Chapter is a free public-service worksheet, version 1.7.0, for women and men who are thinking about divorce and need a private place to begin. It is okay to ask for help. Family, friends, and professional services are available, and it is best not to plan this alone. The page is for education and personal organization. Rough numbers are enough. It does not calculate support, divide property, or recommend whether to leave or file. The closing section reads the solo sketch in plain language and lists people you might talk with. It is not a diagnosis. Read your state or territory’s official sources and talk with a qualified professional before you rely on a figure.</p>
     <hr class="site-rule">
     <p class="site-credit" id="site-credit">Provided as a free public service website. No PII is collected by the website.</p>
     <p class="site-credit">Created by Ron Velez, Founder, iCertifyServices LLC. © 2026. You may copy and share this website code. Attribution is not required. The code is provided as is, without warranty.</p>
@@ -917,6 +1168,31 @@
         [995, 999, 'Alaska', 'AK', 'state']
       ];
 
+      // Census Bureau regions. BEA Regional Price Parities, Table 2, 2023
+      // (https://www.bea.gov/sites/default/files/2024-12/rpp1224.pdf).
+      // All-items bands: higher >= 103, near >= 97, lower < 97. U.S. = 100.
+      // Housing rents: high >= 110, above >= 105. Not a city rent and not a budget.
+      var CENSUS_REGION = {
+        CT: 'Northeast', ME: 'Northeast', MA: 'Northeast', NH: 'Northeast', RI: 'Northeast', VT: 'Northeast', NJ: 'Northeast', NY: 'Northeast', PA: 'Northeast',
+        IL: 'Midwest', IN: 'Midwest', IA: 'Midwest', KS: 'Midwest', MI: 'Midwest', MN: 'Midwest', MO: 'Midwest', NE: 'Midwest', ND: 'Midwest', OH: 'Midwest', SD: 'Midwest', WI: 'Midwest',
+        AL: 'South', AR: 'South', DE: 'South', DC: 'South', FL: 'South', GA: 'South', KY: 'South', LA: 'South', MD: 'South', MS: 'South', NC: 'South', OK: 'South', SC: 'South', TN: 'South', TX: 'South', VA: 'South', WV: 'South',
+        AK: 'West', AZ: 'West', CA: 'West', CO: 'West', HI: 'West', ID: 'West', MT: 'West', NV: 'West', NM: 'West', OR: 'West', UT: 'West', WA: 'West', WY: 'West'
+      };
+
+      var PRICE_NOTE = {
+        AL: ['lower', ''], AK: ['near', ''], AZ: ['near', 'above'], AR: ['lower', ''], CA: ['higher', 'high'],
+        CO: ['near', 'high'], CT: ['higher', 'high'], DE: ['near', ''], DC: ['higher', 'high'], FL: ['higher', 'high'],
+        GA: ['lower', ''], HI: ['higher', 'high'], ID: ['lower', ''], IL: ['near', ''], IN: ['lower', ''],
+        IA: ['lower', ''], KS: ['lower', ''], KY: ['lower', ''], LA: ['lower', ''], ME: ['near', ''],
+        MD: ['higher', 'high'], MA: ['higher', 'high'], MI: ['lower', ''], MN: ['near', ''], MS: ['lower', ''],
+        MO: ['lower', ''], MT: ['lower', ''], NE: ['lower', ''], NV: ['near', 'high'], NH: ['higher', 'high'],
+        NJ: ['higher', 'high'], NM: ['lower', ''], NY: ['higher', 'high'], NC: ['lower', ''], ND: ['lower', ''],
+        OH: ['lower', ''], OK: ['lower', ''], OR: ['higher', 'above'], PA: ['near', ''], RI: ['near', ''],
+        SC: ['lower', ''], SD: ['lower', ''], TN: ['lower', ''], TX: ['near', ''], UT: ['lower', 'above'],
+        VT: ['lower', ''], VA: ['near', 'above'], WA: ['higher', 'high'], WV: ['lower', ''], WI: ['lower', ''],
+        WY: ['lower', '']
+      };
+
       function resolveZip(zip) {
         if (!/^\d{5}$/.test(zip)) return null;
         var n = parseInt(zip, 10);
@@ -1015,7 +1291,7 @@
         if (state.zip.length < 5) {
           line.textContent = 'Place: Not entered';
           note.textContent = state.zip.length === 0
-            ? 'Skip this if it feels safer to leave it blank. A ZIP only names a place for some links. Matching uses a built-in prefix list, so a few special codes can be wrong.'
+            ? 'Skip this if it feels safer to leave it blank. A ZIP names a place for some links in section 6, and section 9 uses a matched state for a statewide price note. Matching uses a built-in prefix list, so a few special codes can be wrong.'
             : 'Enter all 5 digits, or clear the box. Links stay general until then.';
           return;
         }
@@ -1036,7 +1312,177 @@
         }
         var label = state.placeKind === 'territory' ? 'Territory' : (state.placeKind === 'district' ? 'District' : 'State');
         line.textContent = label + ': ' + state.stateName + ' (' + state.stateAbbr + ')';
-        note.textContent = state.stateName + ' will be added to the official-statute searches. The ZIP and ' + state.stateName + ' will be added to the apartment, mediator, and attorney searches. The CDFA search gets the place name only. The therapist directory and the safety hotline do not include your ZIP or state.';
+        var priceNote = state.placeKind === 'territory'
+          ? ' Section 9 names the territory and does not add a price comparison for it.'
+          : ' Section 9 uses the state name on this page for a 2023 statewide price note. It does not send the ZIP.';
+        note.textContent = state.stateName + ' will be added to the official-statute searches. The ZIP and ' + state.stateName + ' will be added to the apartment, mediator, and attorney searches. The CDFA search gets the place name only. The therapist directory and the safety hotline do not include your ZIP or state.' + priceNote;
+      }
+
+      function supportParts() {
+        var alimony = clampMonthly(document.getElementById('alimony-amount').value);
+        var childSupport = clampMonthly(document.getElementById('child-support-amount').value);
+        var supportIn = (state.alimonyMode === 'receive' ? alimony : 0) + (state.childSupportMode === 'receive' ? childSupport : 0);
+        var supportOut = (state.alimonyMode === 'pay' ? alimony : 0) + (state.childSupportMode === 'pay' ? childSupport : 0);
+        return { alimony: alimony, childSupport: childSupport, supportIn: supportIn, supportOut: supportOut };
+      }
+
+      function healthSummary() {
+        var parts = supportParts();
+        var inflow = money.soloInc + parts.supportIn;
+        var outflow = money.soloExp + parts.supportOut;
+        var net = inflow - outflow;
+        var soloTouched = money.soloInc + money.soloExp + parts.alimony + parts.childSupport > 0;
+        if (!soloTouched) {
+          return 'Section 3 does not have a solo income, a solo expense, or a support amount yet. There is no solo money picture to read. That is all right. You can use the paths below with a blank worksheet.';
+        }
+        var lead;
+        if (outflow === 0 && inflow > 0) {
+          lead = 'Solo living expenses are still at zero, so this is only an income note: about ' + fmt(inflow) + ' a month coming in. Add a housing and food guess when you can. A round number is enough.';
+        } else if (net < 0) {
+          lead = 'On the numbers in section 3, the solo month is about ' + fmt(Math.abs(net)) + ' short. This guess does not cover the bills yet. It is a sketch you can change. It is not a court result, and it is not a decision to file or to stay.';
+        } else if (net === 0) {
+          lead = 'On these numbers, the solo month lands even. The bills are covered only if every figure holds. There is no cushion in this guess for a surprise bill.';
+        } else if (outflow > 0 && (net < 300 || net / outflow < 0.1)) {
+          lead = 'On these numbers, the solo month covers the bills, with about ' + fmt(net) + ' left over. That is a thin margin. A small surprise could use it. You can change the guess.';
+        } else {
+          lead = 'On these numbers, the solo month covers the bills, with about ' + fmt(net) + ' left over. That room is only as solid as the figures you typed. It is not a prediction of what a court or an agreement would do.';
+        }
+        var supportNote = '';
+        if (parts.supportIn > 0 && parts.supportOut > 0) {
+          supportNote = ' The solo result includes support you set to Receive and support you set to Pay. Both are amounts you typed to test. They are not orders.';
+        } else if (parts.supportIn > 0) {
+          supportNote = ' The solo result includes support you set to Receive. That amount is a test figure, not an order.';
+        } else if (parts.supportOut > 0) {
+          supportNote = ' The solo result includes support you set to Pay. That amount is a test figure, not an order.';
+        }
+        var compare = '';
+        var hhTouched = money.hhInc + money.hhExp > 0;
+        if (hhTouched) {
+          var hhNet = money.hhInc - money.hhExp;
+          if (net < hhNet) compare = ' The solo month is tighter than the current household month on these guesses.';
+          else if (net > hhNet) compare = ' The solo month has more room than the current household month on these guesses.';
+        }
+        return lead + supportNote + compare;
+      }
+
+      function regionNote() {
+        if (state.zip.length < 5) {
+          return 'No ZIP is entered, so this part stays with your numbers only. You can leave it blank. If you add a ZIP and it matches a state, this section adds a 2023 statewide price note from the U.S. Bureau of Economic Analysis. It still will not know your city or your rent.';
+        }
+        if (!hasJurisdiction()) {
+          return 'This ZIP does not identify a home state, so there is no statewide price note. The reading above uses only the numbers you typed.';
+        }
+        if (state.placeKind === 'territory') {
+          return 'The ZIP matches ' + state.stateName + '. This page does not have a 2023 Bureau of Economic Analysis price note for that territory. Use the expenses you typed, and a local listing if you want a housing check.';
+        }
+        var band = PRICE_NOTE[state.stateAbbr];
+        var region = CENSUS_REGION[state.stateAbbr];
+        if (!band || !region) {
+          return 'The ZIP matches ' + state.stateName + '. This page does not have a statewide price note for that place. The reading above uses only the numbers you typed.';
+        }
+        var cost = band[0] === 'higher'
+          ? 'everyday costs above the U.S. average'
+          : (band[0] === 'near' ? 'everyday costs near the U.S. average' : 'everyday costs below the U.S. average');
+        var housing = band[1] === 'high'
+          ? ' Housing rents in that statewide measure were well above the national rent level. That gap matters if a separation would mean paying for a second place.'
+          : (band[1] === 'above'
+            ? ' Housing rents in that statewide measure were above the national rent level. A second place to live can change a solo month even when other prices look ordinary.'
+            : ' Costs inside the state, especially housing, can still sit far from this statewide figure.');
+        return 'The ZIP matches ' + state.stateName + ', in the ' + region + '. Your expense guess is the number this page uses. As background, the U.S. Bureau of Economic Analysis, for 2023, measured ' + cost + ' there.' + housing + ' This is not a rent quote for your ZIP, and it does not say what you can afford.';
+      }
+
+      function extraNextTips() {
+        var tips = [];
+        var parts = supportParts();
+        var inflow = money.soloInc + parts.supportIn;
+        var outflow = money.soloExp + parts.supportOut;
+        var net = inflow - outflow;
+        var soloTouched = money.soloInc + money.soloExp + parts.alimony + parts.childSupport > 0;
+        if (soloTouched && outflow === 0) {
+          tips.push('Solo expenses are still zero. When you are ready, a round housing and food figure makes this reading more useful.');
+        } else if (soloTouched && net < 0) {
+          tips.push('A practical money question, when you want it, is which two or three bills would change if the household split. Housing, childcare, and debt payments are the usual ones. You do not have to solve them today.');
+        } else if (soloTouched && outflow > 0 && net >= 0 && (net < 300 || net / outflow < 0.1)) {
+          tips.push('Because the leftover amount is small, it can help to ask which bill would break first if a month went wrong. That one question is enough for a first conversation.');
+        }
+        var minors = parseInt(document.getElementById('minor-count').value, 10) || 0;
+        var stage = document.getElementById('dependent-stage').value;
+        if (minors > 0 || stage === 'young children (under 12)' || stage === 'teens / high schoolers') {
+          tips.push('Children are part of this picture. Parenting time and child support follow your state’s process. Section 2 can hold a custody description if you want one. A mediator or a family lawyer is the place for that conversation. This page does not build a parenting plan.');
+        }
+        if (document.getElementById('custody-arrangement').value === 'supervised parenting time only') {
+          tips.push('You noted supervised parenting time. That means a child’s time with one parent would happen only with another adult present. An advocate or a lawyer is the place to talk about safety. This page does not arrange a supervisor.');
+        }
+        var role = document.getElementById('income-position').value;
+        if (role === 'full-time homemaker / caregiver' || role === 'lower earner / part-time') {
+          tips.push('If returning to paid work or to school is part of the question, section 6 has public career and college tools. Those links do not receive your ZIP. A lawyer or a certified divorce financial analyst can talk about time to become self-supporting. This page does not estimate that time.');
+        }
+        if (clampHome(document.getElementById('home-value').value) > 0) {
+          tips.push('A home value is filled in. Who stays, and whether anyone buys out a share, is decided later under your state’s property rules. The equity line is value minus mortgage only. It is not a sale price and not a buyout quote.');
+        }
+        if (businessOpen()) {
+          tips.push('A business you own together is a later decision: who keeps it, whether it is sold, and how pay is handled. Profit in section 5 is revenue minus the expenses you typed. If those expenses already include salaries, the profit is after that pay. A draw is not an expense, so it is not subtracted. An accountant can say which one the books use. This page does not value the business or divide it.');
+        }
+        return tips;
+      }
+
+      function updateCustody() {
+        var choice = document.getElementById('custody-arrangement').value;
+        var notes = {
+          '': 'Choose a description if you want one. You can also leave this blank.',
+          'not applicable': 'You can leave this here. If there are no children, or you do not want to look at parenting today, the rest of the page still works.',
+          'shared custody': 'Shared custody usually means both parents take part in major decisions and both have substantial time with the children. The days can be equal or simply frequent. The schedule is written later. This choice does not set a calendar.',
+          'shared decisions, one primary home': 'A common arrangement is that both parents share major decisions, while the children live mostly in one home and spend other time with the other parent. States name this in different ways. This page does not decide which home.',
+          'sole custody': 'Sole custody usually means one parent provides the main home and makes the major decisions. The other parent may still have parenting time, unless a later order limits it. This page does not decide that.',
+          'supervised parenting time only': 'Supervised parenting time means a child’s time with one parent happens only while another approved adult is present. People ask about this when safety is a concern. An advocate, a mediator, or a judge is the place for that request. This page does not arrange supervision.',
+          'parenting time with no overnights': 'Some schedules use daytime visits and no overnights. That can be temporary or ongoing. The hours are decided later. This page does not set them.',
+          'different children live primarily with different parents': 'This means different children live primarily with different parents. It is less common, and each child is considered separately. This page does not divide a family.',
+          'not ready to name an arrangement': 'You do not have to name an arrangement today. A mediator or a family lawyer can explain the words your state uses. Looking at this list does not file anything.'
+        };
+        document.getElementById('custody-note').textContent = notes[choice] || notes[''];
+      }
+
+      function updateNextSteps() {
+        document.getElementById('solo-health-summary').textContent = healthSummary();
+        document.getElementById('solo-region-note').textContent = regionNote();
+        var list = document.getElementById('extra-next-dynamic');
+        while (list.firstChild) list.removeChild(list.firstChild);
+        extraNextTips().forEach(function (tip) {
+          var item = document.createElement('li');
+          item.textContent = tip;
+          list.appendChild(item);
+        });
+        list.hidden = !list.firstChild;
+      }
+
+      function resetNextPath() {
+        ['path-emotions', 'path-ready', 'path-money'].forEach(function (id) {
+          document.getElementById(id).classList.remove('is-chosen');
+          var btn = document.getElementById(id + '-btn');
+          btn.setAttribute('aria-pressed', 'false');
+          btn.textContent = 'This feels closest right now';
+          var mark = document.getElementById(id).querySelector('.next-marked');
+          if (mark) mark.hidden = true;
+        });
+        document.getElementById('next-step-focus').textContent = '';
+      }
+
+      function choosePath(id) {
+        var btn = document.getElementById(id + '-btn');
+        var turningOff = btn.getAttribute('aria-pressed') === 'true';
+        resetNextPath();
+        if (turningOff) return;
+        document.getElementById(id).classList.add('is-chosen');
+        btn.setAttribute('aria-pressed', 'true');
+        btn.textContent = 'Marked. Choose again to clear';
+        var mark = document.getElementById(id).querySelector('.next-marked');
+        if (mark) mark.hidden = false;
+        var messages = {
+          'path-emotions': 'You marked this path. Speaking with a person before you decide to file or to stay is a complete next step.',
+          'path-ready': 'You marked this path. One conversation with a safe person or a family lawyer is a complete next step.',
+          'path-money': 'You marked this path. Sitting down with someone over the money picture is a complete next step.'
+        };
+        document.getElementById('next-step-focus').textContent = messages[id];
       }
 
       function updateCashFlow() {
@@ -1052,6 +1498,7 @@
         document.getElementById('solo-living').textContent = fmt(money.soloExp);
         document.getElementById('solo-support-out').textContent = fmt(supportOut);
         setNet('solo-net', (money.soloInc + supportIn) - (money.soloExp + supportOut));
+        updateNextSteps();
       }
 
       function updateHomeEquity() {
@@ -1071,6 +1518,90 @@
           equityEl.className = 'even';
         }
         document.getElementById('monthly-tax').textContent = fmt(Math.round(tax / 12)) + ' a month';
+        updateAssets();
+      }
+
+      var ASSET_IDS = [
+        'asset-vehicles', 'asset-cash', 'asset-stocks', 'asset-retirement',
+        'asset-realestate', 'asset-insurance', 'asset-personal', 'asset-crypto',
+        'asset-other', 'asset-business'
+      ];
+
+      function readAsset(id) {
+        var el = document.getElementById(id);
+        return el ? clampHome(el.value) : 0;
+      }
+
+      function businessOpen() {
+        var choice = document.getElementById('business-together').value;
+        return choice === 'yes' || choice === 'unsure';
+      }
+
+      function businessPayNote(profit, ownerPay) {
+        var mode = document.getElementById('business-pay').value;
+        var base = 'Profit here is the revenue you typed minus the expenses you typed. It is a yearly result, not the value of the business, and it is not added to the property total.';
+        if (mode === 'included') {
+          var included = ' You marked that paychecks are inside the expenses, so this profit is what remains after that pay.';
+          if (ownerPay > 0) {
+            included += ' The pay you typed is about ' + fmt(ownerPay) + '. Profit before that pay is about ' + fmt(profit + ownerPay) + '.';
+          }
+          return base + included + ' A court or a buyer may still look at those salaries separately. This page does not.';
+        }
+        if (mode === 'draws') {
+          var draws = ' You marked that pay is a draw or distribution. Draws are not an expense, so they are not subtracted in this profit. The profit figure is before those draws.';
+          if (ownerPay > 0) {
+            var afterDraws = profit - ownerPay;
+            if (afterDraws < 0) {
+              draws += ' The draws you typed, about ' + fmt(ownerPay) + ', are larger than this profit by about ' + fmt(Math.abs(afterDraws)) + '.';
+            } else {
+              draws += ' After draws of about ' + fmt(ownerPay) + ', about ' + fmt(afterDraws) + ' of that profit remains.';
+            }
+          }
+          return base + draws;
+        }
+        if (mode === 'none') {
+          return base + ' You marked that no salary or draw is taken. The profit line is only the revenue and expenses you typed.';
+        }
+        if (mode === 'unsure') {
+          return base + ' If you are not sure, keep this as a sketch. A paycheck that runs through payroll is usually already inside expenses, so profit is after that pay. An owner’s draw is usually not an expense, so profit is before the draw. An accountant can say which one the books use.';
+        }
+        return base;
+      }
+
+      function updateAssets() {
+        var open = businessOpen();
+        document.getElementById('business-detail').hidden = !open;
+        var assetSum = 0;
+        ASSET_IDS.forEach(function (id) {
+          if (id === 'asset-business' && !open) return;
+          assetSum += readAsset(id);
+        });
+        var equity = clampHome(document.getElementById('home-value').value) - clampHome(document.getElementById('mortgage-balance').value);
+        document.getElementById('asset-total').textContent = fmt(assetSum);
+        document.getElementById('debt-shared-total').textContent = fmt(readAsset('debt-shared'));
+        document.getElementById('asset-home-equity').textContent = equity < 0
+          ? fmt(equity) + ' (mortgage is higher than the value)'
+          : fmt(equity);
+        var combinedEl = document.getElementById('asset-combined');
+        combinedEl.textContent = fmt(assetSum + equity);
+        combinedEl.className = (assetSum + equity) < 0 ? 'deficit' : ((assetSum + equity) > 0 ? 'surplus' : 'even');
+        var revenue = readAsset('business-revenue');
+        var expenses = readAsset('business-expenses');
+        var ownerPay = readAsset('business-owner-pay');
+        var profit = revenue - expenses;
+        var profitEl = document.getElementById('business-profit');
+        if (profit < 0) {
+          profitEl.textContent = fmt(profit) + ' (expenses are higher than revenue)';
+          profitEl.className = 'deficit';
+        } else if (profit > 0) {
+          profitEl.textContent = fmt(profit);
+          profitEl.className = 'surplus';
+        } else {
+          profitEl.textContent = '$0';
+          profitEl.className = 'even';
+        }
+        document.getElementById('business-pay-note').textContent = businessPayNote(profit, ownerPay);
+        updateNextSteps();
       }
 
       function setMoney(key, amount, fromSlider) {
@@ -1132,6 +1663,33 @@
         var home = clampHome(document.getElementById('home-value').value) > 0
           ? 'A home value was entered (dollar amount omitted)'
           : 'No home value entered';
+        var assetsEntered = ASSET_IDS.some(function (id) {
+          if (id === 'asset-business' && !businessOpen()) return false;
+          return readAsset(id) > 0;
+        });
+        var assetLine = assetsEntered
+          ? 'Other property values were entered (dollar amounts omitted)'
+          : 'No other property values entered';
+        var businessChoice = document.getElementById('business-together').value;
+        var businessLine = businessChoice === 'yes'
+          ? 'A shared business was indicated'
+          : (businessChoice === 'unsure'
+            ? 'A shared business was marked not sure'
+            : (businessChoice === 'no' ? 'No shared business was indicated' : 'Shared business: not specified'));
+        if (businessOpen() && (readAsset('business-revenue') > 0 || readAsset('business-expenses') > 0)) {
+          businessLine += ' (yearly figures entered, amounts omitted)';
+        }
+        var payWords = {
+          included: 'owner pay described as included in expenses',
+          draws: 'owner pay described as a draw, not included in expenses',
+          none: 'no owner salary or draw taken',
+          unsure: 'not sure whether owner pay is inside expenses'
+        };
+        var payChoice = document.getElementById('business-pay').value;
+        if (businessOpen() && payWords[payChoice]) businessLine += '; ' + payWords[payChoice];
+        var debtLine = readAsset('debt-shared') > 0
+          ? 'A shared-debt total was entered, other than the mortgage (amount omitted)'
+          : 'No shared-debt total entered';
         return [
           'Act as an educational divorce-planning organizer. You are not an attorney or fiduciary. Do not ask for or store names, street addresses, phone numbers, email addresses, account numbers, ZIP codes, or exact dollar amounts.',
           '',
@@ -1143,7 +1701,11 @@
           '- ' + shareLine,
           '- ' + coverLine,
           '- Household description: ' + chosenText('dependent-stage') + '; children under 18: ' + (parseInt(document.getElementById('minor-count').value, 10) || 0) + '; caregiving: ' + chosenText('caregiving-role'),
+          '- Custody description: ' + chosenText('custody-arrangement'),
           '- Housing: ' + home,
+          '- Other property: ' + assetLine,
+          '- Shared debts: ' + debtLine,
+          '- Business: ' + businessLine,
           '- Support amounts were typed by the person as what-if figures and are not included here.',
           '',
           'Please provide:',
@@ -1190,7 +1752,7 @@
           else if (inp.type === 'range') {
             inp.value = '0';
             inp.setAttribute('aria-valuetext', '$0');
-          } else if (inp.id === 'minor-count' || inp.id.indexOf('money-') === 0 || inp.id === 'alimony-amount' || inp.id === 'child-support-amount' || inp.id === 'home-value' || inp.id === 'mortgage-balance' || inp.id === 'property-tax') {
+          } else if (inp.type === 'number') {
             inp.value = '0';
           } else {
             inp.value = '';
@@ -1214,10 +1776,12 @@
         document.getElementById('copy-status').textContent = '';
         document.getElementById('amount-note').textContent = '';
         document.getElementById('task-note').textContent = '';
+        resetNextPath();
         updatePlaceCopy();
         updateLinks();
         updateCashFlow();
         updateHomeEquity();
+        updateCustody();
       }
 
       function executeQuickExit() {
@@ -1244,6 +1808,7 @@
         }
         updatePlaceCopy();
         updateLinks();
+        updateNextSteps();
       });
 
       moneyFields.forEach(function (pair) {
@@ -1272,6 +1837,17 @@
 
       ['home-value', 'mortgage-balance', 'property-tax'].forEach(function (id) {
         document.getElementById(id).addEventListener('input', updateHomeEquity);
+      });
+
+      ASSET_IDS.concat(['business-revenue', 'business-expenses', 'business-owner-pay', 'debt-shared']).forEach(function (id) {
+        document.getElementById(id).addEventListener('input', updateAssets);
+      });
+      ['business-together', 'business-pay'].forEach(function (id) {
+        document.getElementById(id).addEventListener('change', updateAssets);
+      });
+      document.getElementById('custody-arrangement').addEventListener('change', function () {
+        updateCustody();
+        updateNextSteps();
       });
 
       document.getElementById('alimony-receive-btn').addEventListener('click', function () { setMode('alimony', 'receive'); });
@@ -1319,6 +1895,15 @@
         }
       });
 
+      ['income-position', 'dependent-stage', 'caregiving-role'].forEach(function (id) {
+        document.getElementById(id).addEventListener('change', updateNextSteps);
+      });
+      document.getElementById('minor-count').addEventListener('input', updateNextSteps);
+
+      ['path-emotions', 'path-ready', 'path-money'].forEach(function (id) {
+        document.getElementById(id + '-btn').addEventListener('click', function () { choosePath(id); });
+      });
+
       document.getElementById('print-btn').addEventListener('click', function () { window.print(); });
       document.getElementById('quick-exit-btn').addEventListener('click', executeQuickExit);
       document.addEventListener('keydown', function (e) {
@@ -1331,6 +1916,7 @@
       updateLinks();
       updateCashFlow();
       updateHomeEquity();
+      updateCustody();
     })();
   </script>
 </body>
